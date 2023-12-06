@@ -57,6 +57,7 @@ function Login() {
       })
       .catch((error) => console.log(error));
   };
+
   return (
     <div
       style={{
@@ -144,8 +145,8 @@ function Login() {
       )}
       <InputMail mail={mail} setMail={setMail}></InputMail>
       <InputPassLg pass={pass} setPass={setPass}></InputPassLg>
-      <a
-        href="#2"
+      <Link
+        to={"/forgot"}
         style={{
           maxWidth: "400px",
           width: "80%",
@@ -167,7 +168,7 @@ function Login() {
         >
           ¿OLVIDASTE TU CONTRASEÑA?
         </h2>
-      </a>
+      </Link>
       <Button
         bColor={mainColors.buttonColor}
         tColor={mainColors.textColor}

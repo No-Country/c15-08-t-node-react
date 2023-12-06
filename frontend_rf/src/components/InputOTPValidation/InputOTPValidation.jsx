@@ -1,14 +1,14 @@
+// @ts-nocheck
 import React, { useState } from "react";
 import VerificationInput from "react-verification-input";
-import "./verificationInputC.css";
-import Button from "../Button/Button";
-import { mainColors } from "../../assets/colors";
+import Button from "components/Button/Button";
+import "./inputOTPValidation.css";
+import LayoutGrid from "components/LayoutGrid/LayoutGrid";
+import { useNavigate } from "react-router-dom";
 
-import { Spinner } from "react-activity";
-import "react-activity/dist/library.css";
-
-function VerificationInputC(props) {
-  const { setLoading, loading } = props;
+function InputOTPValidation() {
+  let navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [valNumber, setValNumber] = useState("");
   const [error, setError] = useState(false);
 
@@ -36,8 +36,9 @@ function VerificationInputC(props) {
           alert("User Verified");
           setLoading(false);
           setError(false);
+          navigate("/home");
         } else if (response.status === 400) {
-          console.log("Error");
+          console.log(error);
           setLoading(false);
           setError(false);
         } else {
@@ -48,7 +49,7 @@ function VerificationInputC(props) {
       .catch((error) => console.log(error));
   };
   return (
-    <>
+    <LayoutGrid>
       <VerificationInput
         value={valNumber}
         autoFocus={true}
@@ -56,41 +57,12 @@ function VerificationInputC(props) {
         classNames={{
           character: "character",
           characterSelected: "character--selected",
+          container: "container",
         }}
       />
-      {error && (
-        <h2
-          style={{
-            fontFamily: "Marcellus",
-            fontWeight: "300",
-            fontSize: "12px",
-            margin: "0",
-            color: mainColors.primaryColor,
-            textAlign: "center",
-          }}
-        >
-          Favor de introducir código
-        </h2>
-      )}
-      <Button
-        bColor={mainColors.buttonColor}
-        tColor={mainColors.textColor}
-        iColor={mainColors.inactiveColor}
-        text={
-          loading ? (
-            <Spinner
-              size={11.2}
-              color={mainColors.textColor}
-              style={{ textAlign: "center" }}
-            />
-          ) : (
-            "VALIDAR"
-          )
-        }
-        click={() => handleVerification()}
-      ></Button>
-    </>
+      <Button text={"VALIDAR"} loading={loading} click={handleVerification} />
+    </LayoutGrid>
   );
 }
 
-export default VerificationInputC;
+export default InputOTPValidation;

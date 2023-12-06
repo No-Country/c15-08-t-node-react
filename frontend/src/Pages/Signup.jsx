@@ -14,7 +14,6 @@ import Icon from "../assets/images/icon.png";
 import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
 import validator from "validator";
-
 function Signup() {
   let navigate = useNavigate();
   const [mail, setMail] = useState("");
@@ -66,11 +65,10 @@ function Signup() {
       .then((response) => {
         if (response.status === 201) {
           console.log("User Created");
-          console.log(response);
-          localStorage.setItem("useremail", JSON.stringify(mail));
-          console.log(JSON.parse(localStorage.getItem("useremail")));
+
           setLoading(false);
           navigate("/validation");
+          return response.json();
         } else if (response.status === 400) {
           console.log("User already exists");
           setLoading(false);
@@ -78,6 +76,10 @@ function Signup() {
           console.log("Error creating user");
           setLoading(false);
         }
+      })
+      .then((user) => {
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("email", mail.toLowerCase());
       })
       .catch((error) => console.log(error));
   };
@@ -172,7 +174,6 @@ function Signup() {
       <InputPass pass={pass} setPass={setPass}></InputPass>
 
       <div style={{ paddingTop: "27px" }}></div>
-
       <Button
         bColor={mainColors.buttonColor}
         tColor={mainColors.textColor}

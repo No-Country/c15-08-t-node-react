@@ -7,7 +7,7 @@ import { mainColors } from "../../assets/colors";
 import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
 
-function VerificationInputC(props) {
+function RecoverInput(props) {
   const { setLoading, loading } = props;
   const [valNumber, setValNumber] = useState("");
   const [error, setError] = useState(false);
@@ -27,7 +27,7 @@ function VerificationInputC(props) {
       },
       body: JSON.stringify({
         email: localStorage.getItem("email"),
-        code: valNumber,
+        password: valNumber,
       }),
     })
       .then((response) => {
@@ -93,4 +93,4 @@ function VerificationInputC(props) {
   );
 }
 
-export default VerificationInputC;
+export default RecoverInput;

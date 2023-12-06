@@ -5,18 +5,23 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Signup from "./Pages/Signup.jsx";
 import Login from "./Pages/Login.jsx";
 import Validation from "./Pages/Validation.jsx";
+import ForgotPassword from "./Pages/ForgotPassword.jsx";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/signup" />} />
-      <Route exact path="/signup" component={Signup} element={<Signup />} />
-      <Route exact path="/login" component={Login} element={<Login />} />
+      <Route path="/signup" Component={Signup} element={<Signup />} />
+      <Route path="/login" Component={Login} element={<Login />} />
       <Route
-        exact
         path="/validation"
-        component={Validation}
+        Component={Validation}
         element={<Validation />}
+      />
+      <Route
+        path="/forgot"
+        Component={ForgotPassword}
+        element={<ForgotPassword />}
       />
     </Routes>
   );

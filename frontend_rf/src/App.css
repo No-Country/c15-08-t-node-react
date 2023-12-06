@@ -1,7 +1,21 @@
+@font-face {
+  font-family: LEMONMILK;
+  src: url('./assets/fonts/LEMONMILK/LEMONMILK-Light.otf');
+ 
+}
+
+@font-face {
+  font-family: Marcellus;
+  src: url('./assets/fonts/Marcellus/Marcellus-Regular.ttf');
+}
+body {
+  margin: auto auto;
+}
+
 .App {
   text-align: center;
-  height: 100vh;
 }
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

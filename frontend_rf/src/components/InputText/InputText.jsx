@@ -2,21 +2,27 @@ import React, { useState } from "react";
 // @ts-nocheck
 import validator from "validator";
 //Components
-import "./input.css";
-import { mainColors } from "../../assets/colors";
-
+import { styles } from "./styles";
 const Input = ({ type, label, value, onChange, validation = true }) => {
   return (
-    <div className="input-container input1">
+    <div style={{ ...styles.container }}>
       <input
-        style={
-          validation
-            ? { backgroundColor: "#F6F6F6" }
-            : {
-                backgroundColor: mainColors.inactiveColor,
-                color: mainColors.textColor,
-              }
-        }
+        style={styles.input}
+        type={type}
+        id={type}
+        value={value}
+        onChange={onChange}
+        placeholder={label}
+      />
+    </div>
+  );
+};
+
+const InputTe = ({ type, label, value, onChange, validation = true }) => {
+  return (
+    <div style={{ ...styles.containernom }}>
+      <input
+        style={styles.input}
         type={type}
         id={type}
         value={value}
@@ -32,7 +38,9 @@ export const InputNom = ({ nom, setNom, label }) => {
     setNom(event.target.value);
   };
 
-  return <Input type="text" label={label} value={nom} onChange={onChangeNom} />;
+  return (
+    <InputTe type="text" label={label} value={nom} onChange={onChangeNom} />
+  );
 };
 
 export const InputTel = ({ tel, setTel }) => {
@@ -81,13 +89,13 @@ export const InputPass = ({ pass, setPass }) => {
   };
 
   return (
-      <Input
-        type="password"
-        label={"Contraseña"}
-        value={pass}
-        onChange={onChangePass}
-        validation={error}
-      />
+    <Input
+      type="password"
+      label={"Contraseña"}
+      value={pass}
+      onChange={onChangePass}
+      validation={error}
+    />
   );
 };
 
