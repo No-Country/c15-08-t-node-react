@@ -41,19 +41,11 @@ export const makeObjectTime = (response) => {
 export const makeObjectPeople = (response) => {
   console.log(response);
   let array = [];
-  if (response.strip1 > 0) {
-    array.push(
-      { value: 1, label: "12:00pm" },
-      { value: 2, label: "13:00pm" },
-      { value: 3, label: "14:00pm" }
-    );
+  for (let i = 1; i <= response; i++) {
+    array.push({
+      value: 1,
+      label: `${i}`,
+    });
   }
-  if (response.strip2 > 0) {
-    array.push(
-      { value: 4, label: "18:00pm" },
-      { value: 5, label: "19:00pm" },
-      { value: 6, label: "20:00pm" }
-    );
-  }
-  return array.sort((a, b) => (a.value > b.value ? 1 : -1));
+  return array.sort((a, b) => (a.value > b.value ? -1 : 1));
 };

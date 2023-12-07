@@ -5,7 +5,11 @@ import { mainColors } from "../styles/mainColors";
 import ViewDefault from "../components/ViewDefault/ViewDefault";
 import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
 import InputSelection from "../components/InputSelection/InputSelection";
-import { makeObject, makeObjectTime } from "../hooks/handlers";
+import {
+  makeObject,
+  makeObjectPeople,
+  makeObjectTime,
+} from "../hooks/handlers";
 
 const optionstime = [
   { value: 1, label: "12:00pm" },
@@ -37,7 +41,7 @@ function PageReserve() {
   const [optionsDate, setOptionsDate] = useState();
   const [optionsTime, setOptionsTime] = useState();
   const [optionsPeople, setOptionsPeople] = useState();
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
 
   useEffect(() => {
     const fetchDate = async () => {
@@ -57,13 +61,14 @@ function PageReserve() {
         .then((data) => {
           // @ts-ignore
           setOptionsDate(makeObject(data));
-          console.log(makeObject(data));
         });
     };
     fetchDate();
   }, []);
 
   useEffect(() => {
+    setPeople("");
+    setTime("");
     const handleDate = async () => {
       console.log(date);
       await fetch(
@@ -90,12 +95,24 @@ function PageReserve() {
     handleDate();
   }, [setDate, date]);
 
-  const handleTime = async (value) => {
-    console.log(value.value);
-    setTime(value.value);
-
-    console.log(data);
-  };
+  useEffect(() => {
+    const handleTime = async () => {
+      let strip = "";
+      console.log(time);
+      if (parseInt(time) <= 3) {
+        strip = "strip1";
+      } else {
+        strip = "strip2";
+      }
+      console.log("data", data);
+      // @ts-ignore
+      console.log(strip);
+      console.log(data[strip]);
+      // @ts-ignore
+      setOptionsPeople(makeObjectPeople(data[strip]));
+    };
+    handleTime();
+  }, [setTime, time]);
 
   const handlePeople = async (value) => {
     console.log(value.value);
@@ -124,16 +141,16 @@ function PageReserve() {
         />
         {date && (
           <InputSelection
-            onChange={handleTime}
+            onChange={(value) => setTime(value.value)}
             placeholder={"HORA"}
             options={optionsTime}
           />
         )}
         {date && time && (
           <InputSelection
-            onChange={handlePeople}
+            onChange={(value) => setPeople(value.value)}
             placeholder={"PERSONAS"}
-            options={optionspeople}
+            options={optionsPeople}
           />
         )}
         <Button
