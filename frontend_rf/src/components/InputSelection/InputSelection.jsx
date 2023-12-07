@@ -21,6 +21,9 @@ function InputSelection({ placeholder, options, onChange }) {
       placeholder={placeholder}
       options={options}
       onChange={onChange}
+      inputProps={{ readOnly: true }}
+      isSearchable={false}
+      maxMenuHeight={115}
     ></Select>
   );
 }
