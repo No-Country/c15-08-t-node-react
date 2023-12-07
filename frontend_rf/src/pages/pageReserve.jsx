@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import LayoutGrid from "components/LayoutGrid/LayoutGrid";
-import Button from "components/Button/Button";
+import LayoutGrid from "../components/LayoutGrid/LayoutGrid";
+import Button from "../components/Button/Button";
 import { mainColors } from "../styles/mainColors";
-import ViewDefault from "components/ViewDefault/ViewDefault";
-import ImageEpicureos from "components/ImageEpicureos/ImageEpicureos";
-import InputSelection from "components/InputSelection/InputSelection";
+import ViewDefault from "../components/ViewDefault/ViewDefault";
+import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
+import InputSelection from "../components/InputSelection/InputSelection";
 
 const optionstime = [
   { value: 1, label: "12:00pm" },

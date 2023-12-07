@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import Button from "components/Button/Button";
+import Button from "../components/Button/Button";
 
 import {
   InputMail,
   InputNom,
   InputPass,
   InputTel,
-} from "components/InputText/InputText";
-import LayoutGrid from "components/LayoutGrid/LayoutGrid";
-import ViewDefault from "components/ViewDefault/ViewDefault";
+} from "../components/InputText/InputText";
+import LayoutGrid from "../components/LayoutGrid/LayoutGrid";
+import ViewDefault from "../components/ViewDefault/ViewDefault";
 
-import ImageEpicureos from "components/ImageEpicureos/ImageEpicureos";
-import LabelLink from "components/LabelLink/LabelLink";
+import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
+import LabelLink from "../components/LabelLink/LabelLink";
 import { useNavigate } from "react-router-dom";
 import validator from "validator";
 

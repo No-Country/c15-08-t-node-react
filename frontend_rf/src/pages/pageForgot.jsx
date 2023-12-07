@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { InputMail } from "components/InputText/InputText";
+import { InputMail } from "../components/InputText/InputText";
 import { useNavigate } from "react-router-dom";
-import LayoutGrid from "components/LayoutGrid/LayoutGrid";
-import ViewDefault from "components/ViewDefault/ViewDefault";
-import Button from "components/Button/Button";
-import ImageEpicureos from "components/ImageEpicureos/ImageEpicureos";
+import LayoutGrid from "../components/LayoutGrid/LayoutGrid";
+import ViewDefault from "../components/ViewDefault/ViewDefault";
+import Button from "../components/Button/Button";
+import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
 
 function PageForgot() {
   let navigate = useNavigate();

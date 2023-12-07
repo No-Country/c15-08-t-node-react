@@ -1,5 +1,5 @@
-import Button from "components/Button/Button";
-import ViewDefault from "components/ViewDefault/ViewDefault";
+import Button from "../components/Button/Button";
+import ViewDefault from "../components/ViewDefault/ViewDefault";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 function PageHome() {

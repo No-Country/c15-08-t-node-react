@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Button from "components/Button/Button";
+import Button from "../components/Button/Button";
 
-import { InputMail, InputPass } from "components/InputText/InputText";
-import LayoutGrid from "components/LayoutGrid/LayoutGrid";
-import ViewDefault from "components/ViewDefault/ViewDefault";
+import { InputMail, InputPass } from "../components/InputText/InputText";
+import LayoutGrid from "../components/LayoutGrid/LayoutGrid";
+import ViewDefault from "../components/ViewDefault/ViewDefault";
 
 import validator from "validator";
-import ImageEpicureos from "components/ImageEpicureos/ImageEpicureos";
-import LabelLink from "components/LabelLink/LabelLink";
-import LabelLinkForgot from "components/LabelLink/LabelLinkForgot";
+import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
+import LabelLink from "../components/LabelLink/LabelLink";
+import LabelLinkForgot from "../components/LabelLink/LabelLinkForgot";
 import { useNavigate } from "react-router-dom";
 
 function PageLogin() {
