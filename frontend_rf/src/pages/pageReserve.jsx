@@ -5,7 +5,7 @@ import { mainColors } from "../styles/mainColors";
 import ViewDefault from "../components/ViewDefault/ViewDefault";
 import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
 import InputSelection from "../components/InputSelection/InputSelection";
-import { makeObject, makeObjectTime } from "hooks/handlers";
+import { makeObject, makeObjectTime } from "../hooks/handlers";
 
 const optionstime = [
   { value: 1, label: "12:00pm" },
