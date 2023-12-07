@@ -2,13 +2,13 @@ import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import PageLogin from "pages/pageLogin";
-import PageHome from "pages/pageHome";
-import PageForgot from "pages/pageForgot";
-import PageReservations from "pages/pageReservations";
-import PageReserve from "pages/pageReserve";
-import PageOTPValidation from "pages/pageOTPValidation";
-import PageSignup from "pages/pageSignup";
+import PageLogin from "../src/pages/pageLogin";
+import PageHome from "../src/pages/pageHome";
+import PageForgot from "../src/pages/pageForgot";
+import PageReservations from "../src/pages/pageReservations";
+import PageReserve from "../src/pages/pageReserve";
+import PageOTPValidation from "../src/pages/pageOTPValidation";
+import PageSignup from "../src/pages/pageSignup";
 
 function App() {
   return (
