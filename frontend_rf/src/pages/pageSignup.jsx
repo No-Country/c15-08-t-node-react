@@ -66,7 +66,7 @@ function PageSignup() {
         if (response.status === 201) {
           console.log("User Created");
           setLoading(false);
-          navigate("/validation");
+          navigate("/otpvalidation");
           return response.json();
         } else if (response.status === 400) {
           console.log("User already exists");
