@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LayoutGrid from "../components/LayoutGrid/LayoutGrid";
 import Button from "../components/Button/Button";
 import { mainColors } from "../styles/mainColors";
 import ViewDefault from "../components/ViewDefault/ViewDefault";
 import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
 import InputSelection from "../components/InputSelection/InputSelection";
+import { makeObject, makeObjectTime } from "hooks/handlers";
 
 const optionstime = [
   { value: 1, label: "12:00pm" },
@@ -13,12 +14,6 @@ const optionstime = [
   { value: 4, label: "18:00pm" },
   { value: 5, label: "19:00pm" },
   { value: 6, label: "20:00pm" },
-];
-
-const optionsdate = [
-  { value: "08/12/2023", label: "Viernes 8, Dic" },
-  { value: "09/12/2023", label: "Sabado 9, Dic" },
-  { value: "10/12/2023", label: "Domingo 10, Dic" },
 ];
 
 const optionspeople = [
@@ -39,15 +34,67 @@ function PageReserve() {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [people, setPeople] = useState("");
+  const [optionsDate, setOptionsDate] = useState();
+  const [optionsTime, setOptionsTime] = useState();
+  const [optionsPeople, setOptionsPeople] = useState();
+  const [data, setData] = useState();
 
-  const handleDate = async (value) => {
-    console.log(value.value);
-    setDate(value.value);
-  };
+  useEffect(() => {
+    const fetchDate = async () => {
+      await fetch(
+        `https://restaurant-c2gx.onrender.com/api/v1/availability/findDateAvailability/`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => {
+          console.log(response);
+          return response.json();
+        })
+        .then((data) => {
+          // @ts-ignore
+          setOptionsDate(makeObject(data));
+          console.log(makeObject(data));
+        });
+    };
+    fetchDate();
+  }, []);
+
+  useEffect(() => {
+    const handleDate = async () => {
+      console.log(date);
+      await fetch(
+        `https://restaurant-c2gx.onrender.com/api/v1/availability/findStripAvailability/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ date: date }),
+        }
+      )
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          // @ts-ignore
+          setOptionsTime(makeObjectTime(data));
+          // @ts-ignore
+          setData(data);
+        });
+      console.log(date);
+    };
+    handleDate();
+  }, [setDate, date]);
 
   const handleTime = async (value) => {
     console.log(value.value);
     setTime(value.value);
+
+    console.log(data);
   };
 
   const handlePeople = async (value) => {
@@ -71,15 +118,15 @@ function PageReserve() {
 
       <LayoutGrid>
         <InputSelection
-          onChange={handleDate}
+          onChange={(value) => setDate(value.value)}
           placeholder={"FECHA"}
-          options={optionsdate}
+          options={optionsDate}
         />
         {date && (
           <InputSelection
             onChange={handleTime}
             placeholder={"HORA"}
-            options={optionstime}
+            options={optionsTime}
           />
         )}
         {date && time && (
