@@ -1,7 +1,7 @@
 import Button from "../components/Button/Button";
 import ViewDefault from "../components/ViewDefault/ViewDefault";
 import React from "react";
-import ImageEpicureos from "components/ImageEpicureos/ImageEpicureos";
+import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
 import { useNavigate } from "react-router-dom";
 function PageHome() {
   let navigate = useNavigate();
