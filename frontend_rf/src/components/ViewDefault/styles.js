@@ -1,9 +1,11 @@
 import { mainColors } from "../../styles/mainColors";
+import { isMobile } from "react-device-detect";
 
+const height = window.innerHeight;
 const container = {
   display: "flex",
   flexDirection: "column",
-  height: "100vh",
+  height: isMobile ? height : "100vh",
   width: "100%",
   justifyContent: "center",
   alignItems: "center",
@@ -16,7 +18,7 @@ const backgroundImage = {
   position: "absolute",
   zIndex: "-1",
   width: "100vw",
-  height: "100vh",
+  height: isMobile ? height : "100vh",
   backgroundRepeat: "repeat",
   backgroundSize: "contain",
 };
