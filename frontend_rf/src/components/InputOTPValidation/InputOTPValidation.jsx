@@ -1,9 +1,9 @@
 // @ts-nocheck
 import React, { useState } from "react";
 import VerificationInput from "react-verification-input";
-import Button from "components/Button/Button";
+import Button from "../../components/Button/Button";
 import "./inputOTPValidation.css";
-import LayoutGrid from "components/LayoutGrid/LayoutGrid";
+import LayoutGrid from "../../components/LayoutGrid/LayoutGrid";
 import { useNavigate } from "react-router-dom";
 
 function InputOTPValidation() {
