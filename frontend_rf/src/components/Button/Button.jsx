@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React, { useState } from "react";
 import { styles } from "./styles";
-import { mainColors } from "styles/mainColors";
+import { mainColors } from "../../styles/mainColors";
 
 import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";

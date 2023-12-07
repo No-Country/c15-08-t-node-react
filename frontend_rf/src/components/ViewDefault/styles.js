@@ -1,4 +1,4 @@
-import { mainColors } from "styles/mainColors";
+import { mainColors } from "../../styles/mainColors";
 
 const container = {
   display: "flex",

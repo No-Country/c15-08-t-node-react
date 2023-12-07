@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { mainColors } from "styles/mainColors";
+import { mainColors } from "../../styles/mainColors";
 import "./labelLink.css";
 
 function LabelLinkForgot({ to, label }) {

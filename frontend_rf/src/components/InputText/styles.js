@@ -1,4 +1,4 @@
-const { mainColors } = require("styles/mainColors");
+const { mainColors } = require("../../styles/mainColors");
 
 const container = {
   backgroundColor: mainColors.backWhite,

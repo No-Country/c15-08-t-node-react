@@ -2,7 +2,7 @@
 import React from "react";
 import Select from "react-select";
 import "./inputSelection.css";
-import { mainColors } from "styles/mainColors";
+import { mainColors } from "../../styles/mainColors";
 function InputSelection({ placeholder, options, onChange }) {
   const colorStyles = {
     control: (styles) => ({
