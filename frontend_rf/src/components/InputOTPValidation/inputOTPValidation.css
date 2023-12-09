@@ -1,23 +1,36 @@
 .character {
-  font-family: 'Marcellus',Helvetica, Arial;
+  font-family: 'PoppinsThin',Helvetica, Arial;
   background-color: rgba(246, 246, 246, .6);
   font-size: 20px;
   padding:5px;
   text-align: center;
   display: flex;
   align-items: center;
+  box-shadow: none;
   justify-content: center;
+  border: 2px solid rgba(58, 37, 33, 1);
 }
 .character--selected {
-  border: none;
+  border: 2px solid rgba(58, 37, 33, 1);
   box-shadow: none;
   color: rgba(58, 37, 33, 1);
   border-radius: 0;
   outline: 2px solid rgba(58, 37, 33, 1);
 }
 .container {
+  box-shadow: none;
   margin-top: 30px;
   width: 100%;
   height: 50px;
   grid-column: span 2;
+}
+input:focus {
+  outline: none !important;
+  border: none;
+  box-shadow: none;
+}
+input {
+  outline: none !important;
+  border: none;
+  box-shadow: none;
 }

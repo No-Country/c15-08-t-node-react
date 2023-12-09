@@ -1,5 +1,6 @@
 .select {
   grid-column: span 2;
-  font-family: 'LEMONMILK', sans-serif;
+  font-family: 'PoppinsMedium', sans-serif;
   font-size: 14px;
+  text-transform: capitalize;
 }

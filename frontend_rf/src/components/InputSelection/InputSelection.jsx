@@ -12,6 +12,7 @@ function InputSelection({ placeholder, options, onChange }) {
       borderRadius: "0",
       backgroundColor: mainColors.backWhite,
       color: mainColors.textBlack,
+      textTransfrom: "capitalize",
     }),
   };
   return (

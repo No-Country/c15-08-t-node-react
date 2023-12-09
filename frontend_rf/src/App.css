@@ -8,6 +8,23 @@
   font-family: Marcellus;
   src: url('./assets/fonts/Marcellus/Marcellus-Regular.ttf');
 }
+
+@font-face {
+  font-family: PoppinsLight;
+  src: url('./assets/fonts/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+  font-family: PoppinsThin;
+  src: url('./assets/fonts/Poppins/Poppins-ExtraLight.ttf');
+}
+
+
+@font-face {
+  font-family: PoppinsMedium;
+  src: url('./assets/fonts/Poppins/Poppins-Regular.ttf');
+}
+
 body {
   margin: auto auto;
 }

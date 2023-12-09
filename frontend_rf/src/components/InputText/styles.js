@@ -25,8 +25,9 @@ const input = {
   textDecoration: "none",
   width: "100%",
   padding: "16px 17px",
-  fontSize: "12px",
-  fontFamily: "'LEMONMILK', Helvetica",
+  fontSize: "13px",
+  fontFamily: "'PoppinsLight', Helvetica",
+  textTransform: "none",
 };
 
 export const styles = {

@@ -1,16 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { InputMail } from "../components/InputText/InputText";
 import { useNavigate } from "react-router-dom";
 import LayoutGrid from "../components/LayoutGrid/LayoutGrid";
 import ViewDefault from "../components/ViewDefault/ViewDefault";
 import Button from "../components/Button/Button";
 import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
-
+import { mainColors } from "styles/mainColors";
+import validator from "validator";
 function PageForgot() {
+  const [placeholderMailError, setPlaceholderMailError] = useState(false);
   let navigate = useNavigate();
   const [mail, setMail] = useState("");
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    if (!validator.isEmail(mail) && mail.length > 0) {
+      setPlaceholderMailError(true);
+    } else {
+      setPlaceholderMailError(false);
+    }
+  }, [mail, setMail]);
+
+  const checkHandleForgot = () => {
+    if (validator.isEmail(mail)) {
+      handleForgot();
+    } else {
+      setPlaceholderMailError(true);
+    }
+  };
   const handleForgot = async () => {
     setLoading(true);
     await fetch(
@@ -29,12 +46,33 @@ function PageForgot() {
   return (
     <ViewDefault>
       <ImageEpicureos />
+      <div style={{ marginBottom: "20px" }}></div>
       <LayoutGrid>
-        <InputMail mail={mail} setMail={setMail} />
+        <InputMail
+          placeholderError={placeholderMailError}
+          mail={mail}
+          setMail={setMail}
+        />
+        {placeholderMailError && (
+          <h2
+            style={{
+              fontFamily: "PoppinsLight",
+              fontWeight: "300",
+              marginTop: "-5px",
+              fontSize: "11px",
+              color: mainColors.textBlack,
+              textAlign: "left",
+              gridColumn: "span 2",
+              paddingLeft: "2px",
+            }}
+          >
+            Por favor, introducí un mail válido
+          </h2>
+        )}
         <Button
-          text={"RECUPERAR CONTRASEÑA"}
+          text={"Recuperar Contraseña"}
           loading={loading}
-          click={handleForgot}
+          click={checkHandleForgot}
         />
       </LayoutGrid>
     </ViewDefault>

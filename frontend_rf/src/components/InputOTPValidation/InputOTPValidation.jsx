@@ -60,7 +60,7 @@ function InputOTPValidation() {
           container: "container",
         }}
       />
-      <Button text={"VALIDAR"} loading={loading} click={handleVerification} />
+      <Button text={"Validar"} loading={loading} click={handleVerification} />
     </LayoutGrid>
   );
 }

@@ -1,7 +1,7 @@
 const buttonDefault = {
   padding: "16px 60px",
-  fontSize: "12px",
-  fontFamily: '"LEMONMILK", Helvetica',
+  fontSize: "13px",
+  fontFamily: '"PoppinsThin", Helvetica',
   border: "none",
   whiteSpace: "nowrap",
   cursor: "pointer",
@@ -12,8 +12,10 @@ const buttonDefault = {
   alignItems: "center",
   justifyContent: "center",
   fontweight: "100",
-  letterSpacing: "1px",
+  letterSpacing: "0px",
   gridColumn: "span 2",
+  textTransform: "capitalize",
+  marginTop: "8px",
 };
 
 const buttonActive = {

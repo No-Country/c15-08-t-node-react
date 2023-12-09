@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 // @ts-nocheck
-import validator from "validator";
 //Components
 import { styles } from "./styles";
-const Input = ({ type, label, value, onChange, validation = true }) => {
+import "./inputText.css";
+const Input = ({ type, label, value, onChange, placeholderError = false }) => {
   return (
     <div style={{ ...styles.container }}>
       <input
+        className={placeholderError ? "placeholderError error" : ""}
         style={styles.input}
         type={type}
         id={type}
@@ -18,10 +19,17 @@ const Input = ({ type, label, value, onChange, validation = true }) => {
   );
 };
 
-const InputTe = ({ type, label, value, onChange, validation = true }) => {
+const InputTe = ({
+  type,
+  label,
+  value,
+  onChange,
+  placeholderError = false,
+}) => {
   return (
     <div style={{ ...styles.containernom }}>
       <input
+        className={placeholderError ? "placeholderError error" : ""}
         style={styles.input}
         type={type}
         id={type}
@@ -33,58 +41,56 @@ const InputTe = ({ type, label, value, onChange, validation = true }) => {
   );
 };
 
-export const InputNom = ({ nom, setNom, label }) => {
+export const InputNom = ({ nom, setNom, label, placeholderError }) => {
   const onChangeNom = (event) => {
     setNom(event.target.value);
   };
 
   return (
-    <InputTe type="text" label={label} value={nom} onChange={onChangeNom} />
+    <InputTe
+      placeholderError={placeholderError}
+      type="text"
+      label={label}
+      value={nom}
+      onChange={onChangeNom}
+    />
   );
 };
 
-export const InputTel = ({ tel, setTel }) => {
+export const InputTel = ({ tel, setTel, placeholderError }) => {
   const onChangeTel = (event) => {
     setTel(event.target.value);
   };
 
   return (
-    <Input type="tel" label="Teléfono" value={tel} onChange={onChangeTel} />
+    <Input
+      placeholderError={placeholderError}
+      type="tel"
+      label="Teléfono"
+      value={tel}
+      onChange={onChangeTel}
+    />
   );
 };
 
-export const InputMail = ({ mail, setMail }) => {
+export const InputMail = ({ mail, setMail, placeholderError }) => {
   const onChangeMail = (event) => {
     setMail(event.target.value);
   };
 
   return (
-    <Input type="email" label="MAIL" value={mail} onChange={onChangeMail} />
+    <Input
+      placeholderError={placeholderError}
+      type="email"
+      label="Mail"
+      value={mail}
+      onChange={onChangeMail}
+    />
   );
 };
 
-export const InputPass = ({ pass, setPass }) => {
-  const [error, setError] = useState(true);
-
-  const validate = (value) => {
-    setError(false);
-    if (
-      validator.isStrongPassword(value, {
-        minLength: 8,
-        minLowercase: 1,
-        minUppercase: 1,
-        minNumbers: 1,
-        minSymbols: 1,
-      })
-    ) {
-      setError(true);
-    } else if (pass.length > 0) {
-      setError(false);
-    }
-  };
-
+export const InputPass = ({ pass, setPass, placeholderError }) => {
   const onChangePass = (event) => {
-    validate(event.target.value);
     setPass(event.target.value);
   };
 
@@ -94,12 +100,12 @@ export const InputPass = ({ pass, setPass }) => {
       label={"Contraseña"}
       value={pass}
       onChange={onChangePass}
-      validation={error}
+      placeholderError={placeholderError}
     />
   );
 };
 
-export const InputPassLg = ({ pass, setPass }) => {
+export const InputPassLg = ({ pass, setPass, placeholderError }) => {
   const onChangePass = (event) => {
     setPass(event.target.value);
   };

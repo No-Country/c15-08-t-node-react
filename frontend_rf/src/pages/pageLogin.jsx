@@ -74,8 +74,8 @@ function PageLogin() {
       <LayoutGrid>
         <InputMail mail={mail} setMail={setMail} />
         <InputPass pass={pass} setPass={setPass} />
-        <LabelLinkForgot to={"/forgot"} label={"¿OLVIDASTE TU CONTRASEÑA?"} />
-        <Button text={"INGRESA"} loading={loading} click={checkHandleLogin} />
+        <LabelLinkForgot to={"/forgot"} label={"¿Olvidaste tu contraseña?"} />
+        <Button text={"Ingresá"} loading={loading} click={checkHandleLogin} />
       </LayoutGrid>
     </ViewDefault>
   );

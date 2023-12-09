@@ -11,12 +11,12 @@ function PageHome() {
       <ImageEpicureos />
       <Button
         loading={false}
-        text={"REGISTRATE"}
+        text={"Registrate"}
         click={() => navigate("/signup")}
       />
       <Button
         loading={false}
-        text={"RESERVA"}
+        text={"Reserva"}
         click={() => navigate("/reserve")}
       />
     </ViewDefault>

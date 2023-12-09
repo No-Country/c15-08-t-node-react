@@ -16,7 +16,7 @@ function LabelLinkForgot({ to, label }) {
     >
       <h2
         style={{
-          fontFamily: "Marcellus",
+          fontFamily: "PoppinsMedium",
           fontWeight: "400",
           fontSize: "12px",
           paddingLeft: "2px",

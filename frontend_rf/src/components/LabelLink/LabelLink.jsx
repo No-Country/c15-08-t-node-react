@@ -11,7 +11,7 @@ function LabelLink({ to, label, children }) {
     >
       <h2
         style={{
-          fontFamily: "Marcellus",
+          fontFamily: "PoppinsMedium",
           fontWeight: "400",
           fontSize: "15px",
           marginBottom: "20px",

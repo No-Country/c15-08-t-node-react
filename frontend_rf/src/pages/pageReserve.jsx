@@ -11,27 +11,6 @@ import {
   makeObjectTime,
 } from "../hooks/handlers";
 
-const optionstime = [
-  { value: 1, label: "12:00pm" },
-  { value: 2, label: "13:00pm" },
-  { value: 3, label: "14:00pm" },
-  { value: 4, label: "18:00pm" },
-  { value: 5, label: "19:00pm" },
-  { value: 6, label: "20:00pm" },
-];
-
-const optionspeople = [
-  { value: "1", label: "1" },
-  { value: "2", label: "2" },
-  { value: "3", label: "3" },
-  { value: "4", label: "4" },
-  { value: "5", label: "5" },
-  { value: "6", label: "6" },
-  { value: "7", label: "7" },
-  { value: "8", label: "8" },
-  { value: "9", label: "9" },
-  { value: "10", label: "10" },
-];
 
 function PageReserve() {
   const [loading, setLoading] = useState(false);
@@ -123,9 +102,9 @@ function PageReserve() {
       <ImageEpicureos />
       <h2
         style={{
-          fontFamily: "Marcellus",
+          fontFamily: "PoppinsMedium",
           fontWeight: "400",
-          fontSize: "15px",
+          fontSize: "14px",
           marginBottom: "20px",
           color: mainColors.textBlack,
         }}
@@ -136,25 +115,25 @@ function PageReserve() {
       <LayoutGrid>
         <InputSelection
           onChange={(value) => setDate(value.value)}
-          placeholder={"FECHA"}
+          placeholder={"Fecha"}
           options={optionsDate}
         />
         {date && (
           <InputSelection
             onChange={(value) => setTime(value.value)}
-            placeholder={"HORA"}
+            placeholder={"Hora"}
             options={optionsTime}
           />
         )}
         {date && time && (
           <InputSelection
             onChange={(value) => setPeople(value.value)}
-            placeholder={"PERSONAS"}
+            placeholder={"Personas"}
             options={optionsPeople}
           />
         )}
         <Button
-          text={"RESERVAR"}
+          text={"Reservar"}
           loading={loading}
           click={() => console.log("Reservar", date)}
         />

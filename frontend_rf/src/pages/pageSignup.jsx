@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../components/Button/Button";
-
+import { mainColors } from "../styles/mainColors";
 import {
   InputMail,
   InputNom,
@@ -24,6 +24,52 @@ function PageSignup() {
   const [tel, setTel] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [camposVacios, setCamposVacios] = useState(false);
+  const [mailUsed, setMailUsed] = useState(false);
+
+  const [placeholderMailError, setPlaceholderMailError] = useState(false);
+  const [placeholderNomError, setPlaceholderNomError] = useState(false);
+  const [placeholderLastNomError, setPlaceholderLastNomError] = useState(false);
+  const [placeholderTelError, setPlaceholderTelError] = useState(false);
+  const [placeholderPassError, setPlaceholderPassError] = useState(false);
+
+  useEffect(() => {
+    setMailUsed(false);
+    if (!validator.isEmail(mail) && mail.length > 0) {
+      setPlaceholderMailError(true);
+    } else {
+      setPlaceholderMailError(false);
+    }
+  }, [mail, setMail]);
+
+  useEffect(() => {
+    if (
+      !validator.isStrongPassword(pass, {
+        minLength: 8,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      }) &&
+      pass.length > 0
+    ) {
+      setPlaceholderPassError(true);
+    } else {
+      setPlaceholderPassError(false);
+    }
+  }, [pass, setPass]);
+
+  useEffect(() => {
+    if (
+      !validator.isMobilePhone(tel.trim(), ["es-AR", "es-MX"]) &&
+      tel.length > 0
+    ) {
+      setPlaceholderTelError(true);
+    } else {
+      setPlaceholderTelError(false);
+    }
+  }, [tel, setTel]);
+
   const checkHandleSignup = () => {
     if (
       validator.isEmail(mail) &&
@@ -38,10 +84,11 @@ function PageSignup() {
       firstNom.length > 0 &&
       lastNom.length >= 0
     ) {
+      setCamposVacios(false);
       handleSignup();
     } else {
       console.log("Campos Vacios");
-      alert("Campos Vacios");
+      setCamposVacios(true);
     }
   };
 
@@ -70,6 +117,7 @@ function PageSignup() {
           return response.json();
         } else if (response.status === 400) {
           console.log("User already exists");
+          setMailUsed(true);
           setLoading(false);
         } else {
           console.log("Error creating user");
@@ -91,18 +139,120 @@ function PageSignup() {
         label={"¿Ya tenés una cuenta? "}
         children={
           <span style={{ textDecoration: "underline", fontWeight: "600" }}>
-            Ingresa
+            Ingresá
           </span>
         }
       />
       <LayoutGrid>
-        <InputNom nom={firstNom} setNom={setFirstNom} label={"Nombre"} />
-        <InputNom nom={lastNom} setNom={setLastNom} label={"Apellido"} />
-        <InputMail mail={mail} setMail={setMail} />
-        <InputTel tel={tel} setTel={setTel} />
-        <InputPass pass={pass} setPass={setPass} />
+        <InputNom
+          placeholderError={placeholderNomError}
+          nom={firstNom}
+          setNom={setFirstNom}
+          label={"Nombre"}
+        />
+        <InputNom
+          placeholderError={placeholderLastNomError}
+          nom={lastNom}
+          setNom={setLastNom}
+          label={"Apellido"}
+        />
+        <InputMail
+          placeholderError={placeholderMailError}
+          mail={mail}
+          setMail={setMail}
+        />
+        {mailUsed && (
+          <h2
+            style={{
+              fontFamily: "PoppinsLight",
+              fontWeight: "300",
+              marginTop: "-5px",
+              fontSize: "11px",
+              color: mainColors.textBlack,
+              textAlign: "left",
+              gridColumn: "span 2",
+              paddingLeft: "2px",
+            }}
+          >
+            Este mail ya esta en uso
+          </h2>
+        )}
+        {placeholderMailError && (
+          <h2
+            style={{
+              fontFamily: "PoppinsLight",
+              fontWeight: "300",
+              marginTop: "-5px",
+              fontSize: "11px",
+              color: mainColors.textBlack,
+              textAlign: "left",
+              gridColumn: "span 2",
+              paddingLeft: "2px",
+            }}
+          >
+            Por favor, introducí un mail válido
+          </h2>
+        )}
+        <InputTel
+          placeholderError={placeholderTelError}
+          tel={tel}
+          setTel={setTel}
+        />
+        {placeholderTelError && (
+          <h2
+            style={{
+              fontFamily: "PoppinsLight",
+              fontWeight: "300",
+              marginTop: "-5px",
+              fontSize: "11px",
+              color: mainColors.textBlack,
+              textAlign: "left",
+              gridColumn: "span 2",
+              paddingLeft: "2px",
+            }}
+          >
+            Por favor, introducí un teléfono válido
+          </h2>
+        )}
+        <InputPass
+          placeholderError={placeholderPassError}
+          pass={pass}
+          setPass={setPass}
+        />
+        {placeholderPassError && (
+          <h2
+            style={{
+              fontFamily: "PoppinsLight",
+              fontWeight: "300",
+              marginTop: "-5px",
+              fontSize: "11px",
+              color: mainColors.textBlack,
+              textAlign: "left",
+              gridColumn: "span 2",
+              paddingLeft: "2px",
+            }}
+          >
+            Minimo 8 caractéres, 1 minúscula, 1 mayúscula y un caracter especial
+            (@ , $ , %)
+          </h2>
+        )}
+        {camposVacios && (
+          <h2
+            style={{
+              fontFamily: "PoppinsLight",
+              fontWeight: "300",
+              fontSize: "11px",
+              marginBottom: "20px",
+              color: mainColors.textBlack,
+              textAlign: "center",
+              gridColumn: "span 2",
+            }}
+          >
+            Favor llenar todos los campos
+          </h2>
+        )}
         <Button
-          text={"REGISTRATE"}
+          text={"Registrate"}
           loading={loading}
           click={checkHandleSignup}
         />
