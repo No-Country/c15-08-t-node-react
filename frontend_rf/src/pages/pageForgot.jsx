@@ -5,7 +5,7 @@ import LayoutGrid from "../components/LayoutGrid/LayoutGrid";
 import ViewDefault from "../components/ViewDefault/ViewDefault";
 import Button from "../components/Button/Button";
 import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
-import { mainColors } from "styles/mainColors";
+import { mainColors } from "../styles/mainColors";
 import validator from "validator";
 function PageForgot() {
   const [placeholderMailError, setPlaceholderMailError] = useState(false);
