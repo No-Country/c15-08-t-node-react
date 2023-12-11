@@ -9,10 +9,12 @@ import PageReservations from "../src/pages/pageReservations";
 import PageReserve from "../src/pages/pageReserve";
 import PageOTPValidation from "../src/pages/pageOTPValidation";
 import PageSignup from "../src/pages/pageSignup";
+import Navbar from "../src/components/Navbar/Navbar";
 
 function App() {
   return (
     <BrowserRouter>
+      <Navbar />
       <Routes>
         {
           // Default route

@@ -28,8 +28,6 @@ function PageSignup() {
   const [mailUsed, setMailUsed] = useState(false);
 
   const [placeholderMailError, setPlaceholderMailError] = useState(false);
-  const [placeholderNomError, setPlaceholderNomError] = useState(false);
-  const [placeholderLastNomError, setPlaceholderLastNomError] = useState(false);
   const [placeholderTelError, setPlaceholderTelError] = useState(false);
   const [placeholderPassError, setPlaceholderPassError] = useState(false);
 
@@ -145,16 +143,16 @@ function PageSignup() {
       />
       <LayoutGrid>
         <InputNom
-          placeholderError={placeholderNomError}
           nom={firstNom}
           setNom={setFirstNom}
           label={"Nombre"}
+          placeholderError={undefined}
         />
         <InputNom
-          placeholderError={placeholderLastNomError}
           nom={lastNom}
           setNom={setLastNom}
           label={"Apellido"}
+          placeholderError={undefined}
         />
         <InputMail
           placeholderError={placeholderMailError}

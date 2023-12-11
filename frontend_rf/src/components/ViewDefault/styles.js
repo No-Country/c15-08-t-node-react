@@ -5,7 +5,7 @@ const height = window.innerHeight;
 const container = {
   display: "flex",
   flexDirection: "column",
-  height: isMobile ? height : "100vh",
+  height: isMobile ? height : "90vh",
   width: "100%",
   justifyContent: "center",
   alignItems: "center",
@@ -18,7 +18,7 @@ const backgroundImage = {
   position: "absolute",
   zIndex: "-1",
   width: "100vw",
-  height: isMobile ? height : "100vh",
+  height: isMobile ? height : "90vh",
   backgroundRepeat: "repeat",
   backgroundSize: "contain",
 };
