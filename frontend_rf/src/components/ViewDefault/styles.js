@@ -1,7 +1,7 @@
 import { mainColors } from "../../styles/mainColors";
 import { isMobile } from "react-device-detect";
 
-const height = window.innerHeight - 10;
+const height = window.innerHeight;
 const container = {
   display: "flex",
   flexDirection: "column",
@@ -12,6 +12,7 @@ const container = {
   gap: "15px",
   backgroundColor: mainColors.backWhiteOpaque,
   overflow: "hidden",
+  marginTop: "-10vh",
 };
 
 const backgroundImage = {
