@@ -7,7 +7,7 @@ function Navbar() {
   const [openMenu, setOpenMenu] = useState(false);
   return (
     <nav>
-      <ImageEpicureos size="max(100%, 60px)" />
+      <ImageEpicureos size="max(90%, 60px)" />
       <div className="menu" onClick={() => setOpenMenu(!openMenu)}>
         <ion-icon name="menu-outline"></ion-icon>
         <span></span>

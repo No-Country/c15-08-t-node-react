@@ -1,7 +1,7 @@
 import { mainColors } from "../../styles/mainColors";
 import { isMobile } from "react-device-detect";
 
-const height = window.innerHeight;
+const height = window.innerHeight - 10;
 const container = {
   display: "flex",
   flexDirection: "column",

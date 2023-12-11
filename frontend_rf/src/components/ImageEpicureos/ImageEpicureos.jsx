@@ -11,7 +11,7 @@ function ImageEpicureos({ size = "0" }) {
     >
       {size > "0" && (
         <img
-          style={{ width: size, padding: "10px 0px" }}
+          style={{ width: size, padding: "15px 0px", marginLeft: "-30px" }}
           src={logochico}
           alt="Epicureos"
         ></img>
