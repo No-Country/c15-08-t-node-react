@@ -6,6 +6,10 @@ nav {
   padding: 0px 60px;
   height: 10vh;
   background-color: #f6f6f6;
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -o-sticky;
+  position: -ms-sticky;
   position: sticky;
   top: 0;
 }
