@@ -19,7 +19,9 @@
   font-family: PoppinsMedium;
   src: url('./assets/fonts/Poppins/Poppins-Regular.ttf');
 }
-
+:root {
+  overflow-x: hidden;
+}
 body {
   margin: 0 0;
   overflow-x: hidden;
