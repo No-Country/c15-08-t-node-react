@@ -45,11 +45,12 @@ nav .menu {
 }
 
 h3 {
+  display: none;
   text-decoration: none !important;
-  margin-top:  3.2vh;
-  margin-right: 5vw;
+  margin-top:  3.7vh;
+  margin-right: 4vw;
   list-style: none;
-  font-size: 14px;
+  font-size: 13px;
   font-family: 'PoppinsThin', sans-serif;
   color: rgba(37, 37, 37, 1);
   text-transform: capitalize !important;
@@ -85,7 +86,9 @@ nav ul.open {
     right: 0;
     padding: 20px 0
 }
-
+h3 {
+  display: block;
+}
 nav ul li {
     width: 100%;
     text-align: center;

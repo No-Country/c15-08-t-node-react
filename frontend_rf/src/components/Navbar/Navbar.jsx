@@ -9,7 +9,6 @@ function Navbar() {
     <nav
       onMouseLeave={() => {
         setOpenMenu(false);
-        console.log(JSON.parse(localStorage.getItem("user")).firstname);
       }}
     >
       <ImageEpicureos size="max(90%, 50px)" />
@@ -17,7 +16,7 @@ function Navbar() {
         <ion-icon name="menu-outline"></ion-icon>
       </div>
       <h3>
-        Bienvenido,{" "}
+        Bienvenido!{" "}
         <span
           style={{
             fontWeight: 700,
@@ -25,7 +24,7 @@ function Navbar() {
             textDecoration: "underline",
           }}
         >
-          {JSON.parse(localStorage.getItem("user")).firstname.toLowerCase()}
+          {JSON.parse(localStorage.getItem("user"))?.firstname?.toLowerCase()}
         </span>
       </h3>
       <ul className={openMenu ? "open" : ""}>
