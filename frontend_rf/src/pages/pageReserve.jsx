@@ -105,7 +105,7 @@ function PageReserve() {
           fontFamily: "PoppinsMedium",
           fontWeight: "400",
           fontSize: "14px",
-          marginBottom: "20px",
+          marginBottom: "10px",
           color: mainColors.textBlack,
         }}
       >

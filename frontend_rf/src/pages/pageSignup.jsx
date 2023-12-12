@@ -125,6 +125,7 @@ function PageSignup() {
       .then((user) => {
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("email", mail.toLowerCase());
+        console.log(localStorage.getItem("user"));
       })
       .catch((error) => console.log(error));
   };

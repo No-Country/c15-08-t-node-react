@@ -5,7 +5,6 @@ import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
 import { useNavigate } from "react-router-dom";
 function PageHome() {
   let navigate = useNavigate();
-
   return (
     <ViewDefault>
       <ImageEpicureos />

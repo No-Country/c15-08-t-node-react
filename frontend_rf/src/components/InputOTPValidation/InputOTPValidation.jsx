@@ -46,6 +46,7 @@ function InputOTPValidation() {
           setError(false);
         }
       })
+
       .catch((error) => console.log(error));
   };
   return (

@@ -12,7 +12,6 @@ const container = {
   gap: "15px",
   backgroundColor: mainColors.backWhiteOpaque,
   overflow: "hidden",
-  marginTop: "-10vh",
 };
 
 const backgroundImage = {

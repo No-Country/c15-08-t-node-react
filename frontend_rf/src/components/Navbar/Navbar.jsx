@@ -6,15 +6,28 @@ import ImageEpicureos from "../ImageEpicureos/ImageEpicureos";
 function Navbar() {
   const [openMenu, setOpenMenu] = useState(false);
   return (
-    <nav>
-      <ImageEpicureos size="max(90%, 60px)" />
+    <nav
+      onMouseLeave={() => {
+        setOpenMenu(false);
+        console.log(JSON.parse(localStorage.getItem("user")).firstname);
+      }}
+    >
+      <ImageEpicureos size="max(90%, 50px)" />
       <div className="menu" onClick={() => setOpenMenu(!openMenu)}>
         <ion-icon name="menu-outline"></ion-icon>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
       </div>
+      <h3>
+        Bienvenido,{" "}
+        <span
+          style={{
+            fontWeight: 700,
+            fontFamily: "PoppinsMedium",
+            textDecoration: "underline",
+          }}
+        >
+          {JSON.parse(localStorage.getItem("user")).firstname.toLowerCase()}
+        </span>
+      </h3>
       <ul className={openMenu ? "open" : ""}>
         <li onClick={() => setOpenMenu(false)}>
           <Link to={"/home"}>Inicio</Link>

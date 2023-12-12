@@ -9,6 +9,7 @@ import PageReservations from "../src/pages/pageReservations";
 import PageReserve from "../src/pages/pageReserve";
 import PageOTPValidation from "../src/pages/pageOTPValidation";
 import PageSignup from "../src/pages/pageSignup";
+import PageConfirmation from "../src/pages/pageConfirmation";
 import Navbar from "../src/components/Navbar/Navbar";
 
 function App() {
@@ -41,6 +42,11 @@ function App() {
           element={<PageOTPValidation />}
         />
         <Route path="/forgot" Component={PageForgot} element={<PageForgot />} />
+        <Route
+          path="/confirmation"
+          Component={PageConfirmation}
+          element={<PageConfirmation />}
+        />
       </Routes>
     </BrowserRouter>
   );

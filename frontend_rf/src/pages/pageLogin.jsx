@@ -39,13 +39,12 @@ function PageLogin() {
     })
       .then((response) => {
         if (response.status === 200) {
-          localStorage.setItem("email", mail);
-          setMail("");
-          setPass("");
           console.log("User Logged");
           alert("User Logged");
           navigate("/home");
           setLoading(false);
+
+          return response.json();
         } else if (response.status === 400) {
           console.log("User doesnt exist");
           setMail("");
@@ -55,6 +54,13 @@ function PageLogin() {
         } else {
           setLoading(false);
         }
+      })
+      .then((user) => {
+        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("email", mail.toLowerCase());
+        console.log(localStorage.getItem("user"));
+        setMail("");
+        setPass("");
       })
       .catch((error) => console.log(error));
   };
@@ -72,8 +78,8 @@ function PageLogin() {
         }
       />
       <LayoutGrid>
-        <InputMail mail={mail} setMail={setMail} />
-        <InputPass pass={pass} setPass={setPass} />
+        <InputMail placeholderError={undefined} mail={mail} setMail={setMail} />
+        <InputPass placeholderError={undefined} pass={pass} setPass={setPass} />
         <LabelLinkForgot to={"/forgot"} label={"¿Olvidaste tu contraseña?"} />
         <Button text={"Ingresá"} loading={loading} click={checkHandleLogin} />
       </LayoutGrid>

@@ -41,6 +41,18 @@ nav .menu {
   display: none;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+}
+
+h3 {
+  text-decoration: none !important;
+  margin-top:  3.2vh;
+  margin-right: 5vw;
+  list-style: none;
+  font-size: 14px;
+  font-family: 'PoppinsThin', sans-serif;
+  color: rgba(37, 37, 37, 1);
+  text-transform: capitalize !important;
 }
 
 nav .menu span {
@@ -52,8 +64,8 @@ nav .menu span {
 @media (max-width: 480px) {
   nav .menu {
     display: flex;
-    top: 2vh;
-    right: 10vw;
+    top: 2.5vh;
+    right: -82vw;
     position: absolute;
     
   }
@@ -69,7 +81,7 @@ nav ul.open {
     flex-direction: column;
     width: 100%;
     position: absolute;
-    top: 8vh;
+    top: 6.8vh;
     right: 0;
     padding: 20px 0
 }
@@ -82,7 +94,6 @@ nav ul li {
 
 ion-icon {
   font-size: 48px;
-  margin-right: -20px;
   color: rgba(58, 37, 33, 1);
 }
 
