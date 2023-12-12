@@ -11,7 +11,7 @@ import LabelLink from "../components/LabelLink/LabelLink";
 import LabelLinkForgot from "../components/LabelLink/LabelLinkForgot";
 import { useNavigate } from "react-router-dom";
 
-function PageLogin() {
+function PageLogin({ setUserLogged }) {
   let navigate = useNavigate();
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
@@ -41,6 +41,7 @@ function PageLogin() {
         if (response.status === 200) {
           console.log("User Logged");
           alert("User Logged");
+          setUserLogged(true);
           navigate("/home");
           setLoading(false);
 

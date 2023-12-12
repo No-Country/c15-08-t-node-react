@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import PageLogin from "../src/pages/pageLogin";
@@ -13,40 +13,34 @@ import PageConfirmation from "../src/pages/pageConfirmation";
 import Navbar from "../src/components/Navbar/Navbar";
 
 function App() {
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   return (
     <BrowserRouter>
-      <Navbar />
+      <Navbar userLoggedIn={userLoggedIn} />
       <Routes>
         {
           // Default route
         }
         <Route path="/" element={<Navigate to="/home" />} />
 
-        <Route path="/home" Component={PageHome} element={<PageHome />} />
-        <Route
-          path="/reserve"
-          Component={PageReserve}
-          element={<PageReserve />}
-        />
-        <Route
-          path="/reservations"
-          Component={PageReservations}
-          element={<PageReservations />}
-        />
+        <Route path="/home" element={<PageHome />} />
+        <Route path="/reserve" element={<PageReserve />} />
+        <Route path="/reservations" element={<PageReservations />} />
 
-        <Route path="/signup" Component={PageSignup} element={<PageSignup />} />
-        <Route path="/login" Component={PageLogin} element={<PageLogin />} />
+        <Route
+          path="/signup"
+          element={<PageSignup setUserLogged={setUserLoggedIn} />}
+        />
+        <Route
+          path="/login"
+          element={<PageLogin setUserLogged={setUserLoggedIn} />}
+        />
         <Route
           path="/otpvalidation"
-          Component={PageOTPValidation}
-          element={<PageOTPValidation />}
+          element={<PageOTPValidation setUserLogged={setUserLoggedIn} />}
         />
-        <Route path="/forgot" Component={PageForgot} element={<PageForgot />} />
-        <Route
-          path="/confirmation"
-          Component={PageConfirmation}
-          element={<PageConfirmation />}
-        />
+        <Route path="/forgot" element={<PageForgot />} />
+        <Route path="/confirmation" element={<PageConfirmation />} />
       </Routes>
     </BrowserRouter>
   );

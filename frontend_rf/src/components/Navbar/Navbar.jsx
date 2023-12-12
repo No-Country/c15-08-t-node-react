@@ -1,10 +1,15 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import ImageEpicureos from "../ImageEpicureos/ImageEpicureos";
-function Navbar() {
+function Navbar({ userLoggedIn }) {
   const [openMenu, setOpenMenu] = useState(false);
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    setName(JSON.parse(localStorage.getItem("user"))?.firstname?.toLowerCase());
+  }, [userLoggedIn]);
   return (
     <nav
       onMouseLeave={() => {
@@ -24,7 +29,7 @@ function Navbar() {
             textDecoration: "underline",
           }}
         >
-          {JSON.parse(localStorage.getItem("user"))?.firstname?.toLowerCase()}
+          {name}
         </span>
       </h3>
       <ul className={openMenu ? "open" : ""}>
