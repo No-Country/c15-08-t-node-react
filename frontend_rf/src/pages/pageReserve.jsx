@@ -16,11 +16,14 @@ function PageReserve() {
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [time2, setTime2] = useState("");
   const [people, setPeople] = useState("");
+  const [people2, setPeople2] = useState("");
   const [optionsDate, setOptionsDate] = useState();
   const [optionsTime, setOptionsTime] = useState();
   const [optionsPeople, setOptionsPeople] = useState();
   const [data, setData] = useState({});
+  const [strip, setStrip] = useState("");
 
   useEffect(() => {
     const fetchDate = async () => {
@@ -46,8 +49,6 @@ function PageReserve() {
   }, []);
 
   useEffect(() => {
-    setPeople("");
-    setTime("");
     const handleDate = async () => {
       console.log(date);
       await fetch(
@@ -72,7 +73,7 @@ function PageReserve() {
       console.log(date);
     };
     handleDate();
-  }, [setDate, date]);
+  }, [date, setDate]);
 
   useEffect(() => {
     const handleTime = async () => {
@@ -80,8 +81,10 @@ function PageReserve() {
       console.log(time);
       if (parseInt(time) <= 3) {
         strip = "strip1";
+        setStrip(strip);
       } else {
         strip = "strip2";
+        setStrip(strip);
       }
       console.log("data", data);
       // @ts-ignore
@@ -91,11 +94,43 @@ function PageReserve() {
       setOptionsPeople(makeObjectPeople(data[strip]));
     };
     handleTime();
-  }, [setTime, time]);
+  }, [setTime, time, data]);
 
-  const handlePeople = async (value) => {
-    console.log(value.value);
-    setPeople(value.value);
+  const handleReservation = async () => {
+    console.log(date, time, people);
+    setLoading(true);
+    await fetch(
+      `https://restaurant-c2gx.onrender.com/api/v1/booking/createbooking/`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          date: date,
+          schedule: time2,
+          strip: strip,
+          diners: parseInt(people2),
+          status: "reserved",
+        }),
+      }
+    )
+      .then((response) => {
+        if (response.status === 200) {
+          console.log("Reserva Creada");
+          setLoading(false);
+
+          return response.json();
+        } else if (response.status === 400) {
+          setLoading(false);
+        } else {
+          setLoading(false);
+        }
+      })
+      .then((numreserva) => {
+        console.log(numreserva);
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <ViewDefault>
@@ -120,23 +155,25 @@ function PageReserve() {
         />
         {date && (
           <InputSelection
-            onChange={(value) => setTime(value.value)}
+            onChange={(value) => {
+              setTime(value.value);
+              setTime2(value.label);
+            }}
             placeholder={"Hora"}
             options={optionsTime}
           />
         )}
         {date && time && (
           <InputSelection
-            onChange={(value) => setPeople(value.value)}
+            onChange={(value) => {
+              setPeople(value.value);
+              setPeople2(value.label);
+            }}
             placeholder={"Personas"}
             options={optionsPeople}
           />
         )}
-        <Button
-          text={"Reservar"}
-          loading={loading}
-          click={() => console.log("Reservar", date)}
-        />
+        <Button text={"Reservar"} loading={loading} click={handleReservation} />
       </LayoutGrid>
     </ViewDefault>
   );
