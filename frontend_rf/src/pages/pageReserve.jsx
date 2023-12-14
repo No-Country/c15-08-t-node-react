@@ -5,14 +5,16 @@ import { mainColors } from "../styles/mainColors";
 import ViewDefault from "../components/ViewDefault/ViewDefault";
 import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
 import InputSelection from "../components/InputSelection/InputSelection";
+
+import { useNavigate } from "react-router-dom";
 import {
   makeObject,
   makeObjectPeople,
   makeObjectTime,
 } from "../hooks/handlers";
 
-
 function PageReserve() {
+  let navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -99,6 +101,10 @@ function PageReserve() {
   const handleReservation = async () => {
     console.log(date, time, people);
     setLoading(true);
+    if (date === "" || time === "" || people === "") {
+      setLoading(false);
+      return;
+    }
     await fetch(
       `https://restaurant-c2gx.onrender.com/api/v1/booking/createbooking/`,
       {
@@ -112,6 +118,7 @@ function PageReserve() {
           strip: strip,
           diners: parseInt(people2),
           status: "reserved",
+          userId: JSON.parse(localStorage.getItem("user")).id,
         }),
       }
     )
@@ -129,6 +136,7 @@ function PageReserve() {
       })
       .then((numreserva) => {
         console.log(numreserva);
+        navigate(`/confirmation/${numreserva}`);
       })
       .catch((error) => console.log(error));
   };

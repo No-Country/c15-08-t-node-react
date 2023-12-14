@@ -6,9 +6,11 @@ import ImageEpicureos from "../ImageEpicureos/ImageEpicureos";
 function Navbar({ userLoggedIn }) {
   const [openMenu, setOpenMenu] = useState(false);
   const [name, setName] = useState("");
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     setName(JSON.parse(localStorage.getItem("user"))?.firstname?.toLowerCase());
+    setUserId(JSON.parse(localStorage.getItem("user"))?.id);
   }, [userLoggedIn]);
   return (
     <nav
@@ -43,7 +45,7 @@ function Navbar({ userLoggedIn }) {
           <Link to={"/reserve"}>Reservar</Link>
         </li>
         <li onClick={() => setOpenMenu(false)}>
-          <Link to={undefined}>Perfil</Link>
+          <Link to={`/reservations/${userId}`}>Perfil</Link>
         </li>
       </ul>
     </nav>

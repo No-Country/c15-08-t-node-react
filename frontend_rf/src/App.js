@@ -25,7 +25,7 @@ function App() {
 
         <Route path="/home" element={<PageHome />} />
         <Route path="/reserve" element={<PageReserve />} />
-        <Route path="/reservations" element={<PageReservations />} />
+        <Route path="/reservations/:userId" element={<PageReservations />} />
 
         <Route
           path="/signup"
@@ -40,7 +40,7 @@ function App() {
           element={<PageOTPValidation setUserLogged={setUserLoggedIn} />}
         />
         <Route path="/forgot" element={<PageForgot />} />
-        <Route path="/confirmation" element={<PageConfirmation />} />
+        <Route path="/confirmation/:reserveId" element={<PageConfirmation />} />
       </Routes>
     </BrowserRouter>
   );

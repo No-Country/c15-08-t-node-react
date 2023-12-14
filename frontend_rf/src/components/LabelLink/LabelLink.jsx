@@ -14,7 +14,7 @@ function LabelLink({ to, label, children }) {
           fontFamily: "PoppinsMedium",
           fontWeight: "400",
           fontSize: "15px",
-          marginBottom: "20px",
+          marginBottom: "10px",
           color: mainColors.textBlack,
         }}
       >
