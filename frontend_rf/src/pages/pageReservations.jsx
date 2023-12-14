@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { mainColors } from "../styles/mainColors";
 import { useParams } from "react-router-dom";
-import BoxReserve from "components/BoxReserve/BoxReserve";
+import BoxReserve from "../components/BoxReserve/BoxReserve";
 
 import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
