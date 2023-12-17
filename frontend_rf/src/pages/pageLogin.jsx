@@ -4,7 +4,7 @@ import Button from "../components/Button/Button";
 import { InputMail, InputPass } from "../components/InputText/InputText";
 import LayoutGrid from "../components/LayoutGrid/LayoutGrid";
 import ViewDefault from "../components/ViewDefault/ViewDefault";
-
+import { mainColors } from "../styles/mainColors";
 import validator from "validator";
 import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
 import LabelLink from "../components/LabelLink/LabelLink";
@@ -16,19 +16,16 @@ function PageLogin({ setUserLogged }) {
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const checkHandleLogin = () => {
     if (validator.isEmail(mail) && pass.length > 0) {
       handleLogIn();
-      console.log("Valid");
-    } else {
-      console.log("Not Valid");
     }
     return null;
   };
 
   const handleLogIn = async () => {
-    console.log(mail, pass);
     setLoading(true);
     await fetch(`https://restaurant-c2gx.onrender.com/api/v1/auth/login/`, {
       method: "POST",
@@ -39,18 +36,15 @@ function PageLogin({ setUserLogged }) {
     })
       .then((response) => {
         if (response.status === 200) {
-          console.log("User Logged");
-          alert("User Logged");
           setUserLogged(true);
           navigate("/home");
           setLoading(false);
 
           return response.json();
         } else if (response.status === 400) {
-          console.log("User doesnt exist");
           setMail("");
           setPass("");
-          alert("Wrong Password");
+          setError(true);
           setLoading(false);
         } else {
           setLoading(false);
@@ -59,7 +53,6 @@ function PageLogin({ setUserLogged }) {
       .then((user) => {
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("email", mail.toLowerCase());
-        console.log(localStorage.getItem("user"));
         setMail("");
         setPass("");
       })
@@ -78,7 +71,23 @@ function PageLogin({ setUserLogged }) {
           </span>
         }
       />
+
       <LayoutGrid>
+        {error && (
+          <h2
+            style={{
+              fontFamily: "PoppinsLight",
+              fontWeight: "300",
+              marginBottom: "-3px",
+              fontSize: "13px",
+              color: mainColors.textBlack,
+              textAlign: "center",
+              gridColumn: "span 2",
+            }}
+          >
+            Contraseña incorrecta, intenta otra vez
+          </h2>
+        )}
         <InputMail placeholderError={undefined} mail={mail} setMail={setMail} />
         <InputPass placeholderError={undefined} pass={pass} setPass={setPass} />
         <LabelLinkForgot to={"/forgot"} label={"¿Olvidaste tu contraseña?"} />

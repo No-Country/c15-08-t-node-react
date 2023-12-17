@@ -11,6 +11,7 @@ import PageOTPValidation from "../src/pages/pageOTPValidation";
 import PageSignup from "../src/pages/pageSignup";
 import PageConfirmation from "../src/pages/pageConfirmation";
 import Navbar from "../src/components/Navbar/Navbar";
+import PageProfile from "../src/pages/pageProfile";
 
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
@@ -24,7 +25,10 @@ function App() {
         <Route path="/" element={<Navigate to="/home" />} />
 
         <Route path="/home" element={<PageHome />} />
-        <Route path="/reserve" element={<PageReserve />} />
+        <Route
+          path="/reserve"
+          element={<PageReserve userLoggedIn={userLoggedIn} />}
+        />
         <Route path="/reservations/:userId" element={<PageReservations />} />
 
         <Route
@@ -41,6 +45,15 @@ function App() {
         />
         <Route path="/forgot" element={<PageForgot />} />
         <Route path="/confirmation/:reserveId" element={<PageConfirmation />} />
+        <Route
+          path="/profile/:userId"
+          element={
+            <PageProfile
+              setUserLoggedIn={setUserLoggedIn}
+              userLoggedIn={userLoggedIn}
+            />
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

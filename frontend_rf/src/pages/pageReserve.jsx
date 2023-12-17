@@ -13,7 +13,7 @@ import {
   makeObjectTime,
 } from "../hooks/handlers";
 
-function PageReserve() {
+function PageReserve({ userLoggedIn }) {
   let navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [date, setDate] = useState("");
@@ -26,6 +26,12 @@ function PageReserve() {
   const [optionsPeople, setOptionsPeople] = useState();
   const [data, setData] = useState({});
   const [strip, setStrip] = useState("");
+
+  useEffect(() => {
+    if (!userLoggedIn) {
+      navigate("/signup");
+    }
+  });
 
   useEffect(() => {
     const fetchDate = async () => {

@@ -9,8 +9,14 @@ function Navbar({ userLoggedIn }) {
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    setName(JSON.parse(localStorage.getItem("user"))?.firstname?.toLowerCase());
-    setUserId(JSON.parse(localStorage.getItem("user"))?.id);
+    if (!localStorage.getItem("user")) {
+      console.log("valid");
+      setName(
+        JSON.parse(localStorage.getItem("user"))?.firstname?.toLowerCase()
+      );
+      setUserId(JSON.parse(localStorage.getItem("user"))?.id);
+    }
+    setUserId(undefined);
   }, [userLoggedIn]);
   return (
     <nav
@@ -39,13 +45,13 @@ function Navbar({ userLoggedIn }) {
           <Link to={"/home"}>Inicio</Link>
         </li>
         <li onClick={() => setOpenMenu(false)}>
-          <Link to={undefined}>Menú</Link>
+          <Link to={"/home"}>Menú</Link>
         </li>
         <li onClick={() => setOpenMenu(false)}>
           <Link to={"/reserve"}>Reservar</Link>
         </li>
         <li onClick={() => setOpenMenu(false)}>
-          <Link to={`/reservations/${userId}`}>Perfil</Link>
+          <Link to={`/profile/${userId}`}>Perfil</Link>
         </li>
       </ul>
     </nav>
