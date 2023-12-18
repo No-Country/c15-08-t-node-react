@@ -1,25 +1,15 @@
-import Button from "../components/Button/Button";
-import ViewDefault from "../components/ViewDefault/ViewDefault";
+
 import React from "react";
-import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
+import ImageHome from "../components/ImageHome/ImageHome";
 import { useNavigate } from "react-router-dom";
 function PageHome() {
   let navigate = useNavigate();
 
+
   return (
-    <ViewDefault>
-      <ImageEpicureos />
-      <Button
-        loading={false}
-        text={"Registrate"}
-        click={() => navigate("/signup")}
-      />
-      <Button
-        loading={false}
-        text={"Reserva"}
-        click={() => navigate("/reserve")}
-      />
-    </ViewDefault>
+   
+      <ImageHome/>
+     
   );
 }
 
