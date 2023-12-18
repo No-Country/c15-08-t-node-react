@@ -1,6 +1,7 @@
 export const mainColors = {
   backWhite: "rgba(246, 246, 246, 1)",
   backWhiteOpaque: "rgba(246, 246, 246, .6) ",
+  backBrownOpaque: "rgba(58, 37, 33, .2) ",
 
   textWhite: "rgba(255, 255, 255, 1)",
   textBlack: "rgba(37, 37, 37, 1)",

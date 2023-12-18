@@ -4,11 +4,11 @@ import ViewDefault from "../components/ViewDefault/ViewDefault";
 import InputOTPValidation from "../components/InputOTPValidation/InputOTPValidation";
 import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
 
-function PageOTPValidation() {
+function PageOTPValidation({ setUserLogged }) {
   return (
     <ViewDefault>
       <ImageEpicureos />
-      <InputOTPValidation />
+      <InputOTPValidation setUserLogged={setUserLogged} />
     </ViewDefault>
   );
 }

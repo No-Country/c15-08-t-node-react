@@ -15,7 +15,7 @@ import LabelLink from "../components/LabelLink/LabelLink";
 import { useNavigate } from "react-router-dom";
 import validator from "validator";
 
-function PageSignup() {
+function PageSignup({ setUserLogged }) {
   let navigate = useNavigate();
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
@@ -111,6 +111,7 @@ function PageSignup() {
         if (response.status === 201) {
           console.log("User Created");
           setLoading(false);
+          setUserLogged(true);
           navigate("/otpvalidation");
           return response.json();
         } else if (response.status === 400) {
@@ -125,6 +126,7 @@ function PageSignup() {
       .then((user) => {
         localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("email", mail.toLowerCase());
+        console.log(localStorage.getItem("user"));
       })
       .catch((error) => console.log(error));
   };

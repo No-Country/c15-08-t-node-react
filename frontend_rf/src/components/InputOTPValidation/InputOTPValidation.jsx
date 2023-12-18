@@ -6,7 +6,7 @@ import "./inputOTPValidation.css";
 import LayoutGrid from "../../components/LayoutGrid/LayoutGrid";
 import { useNavigate } from "react-router-dom";
 
-function InputOTPValidation() {
+function InputOTPValidation({ setUserLogged }) {
   let navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [valNumber, setValNumber] = useState("");
@@ -36,6 +36,7 @@ function InputOTPValidation() {
           alert("User Verified");
           setLoading(false);
           setError(false);
+          setUserLogged(true);
           navigate("/home");
         } else if (response.status === 400) {
           console.log(error);
@@ -46,6 +47,7 @@ function InputOTPValidation() {
           setError(false);
         }
       })
+
       .catch((error) => console.log(error));
   };
   return (

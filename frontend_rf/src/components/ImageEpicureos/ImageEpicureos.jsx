@@ -7,7 +7,10 @@ function ImageEpicureos({ size = "0" }) {
   return (
     <Link
       to={"/home"}
-      style={{ textDecoration: "none", color: mainColors.textBlack }}
+      style={{
+        textDecoration: "none",
+        color: mainColors.textBlack,
+      }}
     >
       {size > "0" && (
         <img
@@ -16,7 +19,13 @@ function ImageEpicureos({ size = "0" }) {
           alt="Epicureos"
         ></img>
       )}
-      {size === "0" && <img src={LogoEpicureos} alt="Epicureos"></img>}
+      {size === "0" && (
+        <img
+          style={{ paddingTop: "10vh" }}
+          src={LogoEpicureos}
+          alt="Epicureos"
+        ></img>
+      )}
     </Link>
   );
 }

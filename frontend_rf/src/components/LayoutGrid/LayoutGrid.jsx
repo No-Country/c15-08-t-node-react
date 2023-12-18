@@ -8,6 +8,8 @@ function LayoutGrid({ children }) {
         gridTemplateColumns: "1fr 1fr",
         width: "max(320px, 30%)",
         gap: "11px",
+        alignContent: "center",
+        alignItems: "center",
       }}
     >
       {children}

@@ -38,9 +38,9 @@ function PageForgot() {
     ).then((response) => {
       console.log(response);
       setLoading(false);
+      localStorage.setItem("email", mail);
       setMail("");
       navigate("/otpvalidation");
-      localStorage.setItem("email", mail);
     });
   };
   return (
