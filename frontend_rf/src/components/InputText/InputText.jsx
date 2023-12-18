@@ -73,6 +73,22 @@ export const InputTel = ({ tel, setTel, placeholderError }) => {
   );
 };
 
+export const InputTelShort = ({ tel, setTel, placeholderError }) => {
+  const onChangeTel = (event) => {
+    setTel(event.target.value);
+  };
+
+  return (
+    <InputTe
+      placeholderError={placeholderError}
+      type="tel"
+      label="Teléfono"
+      value={tel}
+      onChange={onChangeTel}
+    />
+  );
+};
+
 export const InputMail = ({ mail, setMail, placeholderError }) => {
   const onChangeMail = (event) => {
     setMail(event.target.value);
@@ -96,6 +112,22 @@ export const InputPass = ({ pass, setPass, placeholderError }) => {
 
   return (
     <Input
+      type="password"
+      label={"Contraseña"}
+      value={pass}
+      onChange={onChangePass}
+      placeholderError={placeholderError}
+    />
+  );
+};
+
+export const InputPassShort = ({ pass, setPass, placeholderError }) => {
+  const onChangePass = (event) => {
+    setPass(event.target.value);
+  };
+
+  return (
+    <InputTe
       type="password"
       label={"Contraseña"}
       value={pass}
