@@ -29,7 +29,7 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
   };
   useEffect(() => {
     if (!userLoggedIn) {
-      //navigate("/signup");
+      navigate("/signup");
     }
   });
   return (
