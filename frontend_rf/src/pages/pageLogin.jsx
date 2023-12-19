@@ -51,10 +51,12 @@ function PageLogin({ setUserLogged }) {
         }
       })
       .then((user) => {
-        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem("user", JSON.stringify(user.session));
         localStorage.setItem("email", mail.toLowerCase());
         setMail("");
         setPass("");
+        console.log(user);
+        console.log(user.session);
       })
       .catch((error) => console.log(error));
   };

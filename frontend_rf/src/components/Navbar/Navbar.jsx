@@ -9,7 +9,8 @@ function Navbar({ userLoggedIn }) {
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
-    if (!localStorage.getItem("user")) {
+    console.log(localStorage.getItem("user"));
+    if (userLoggedIn) {
       console.log("valid");
       setName(
         JSON.parse(localStorage.getItem("user"))?.firstname?.toLowerCase()

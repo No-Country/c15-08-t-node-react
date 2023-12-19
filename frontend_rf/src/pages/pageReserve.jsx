@@ -54,19 +54,18 @@ function PageReserve({ userLoggedIn }) {
         });
     };
     fetchDate();
-  }, []);
+  }, [userLoggedIn]);
 
   useEffect(() => {
     const handleDate = async () => {
       console.log(date);
       await fetch(
-        `https://restaurant-c2gx.onrender.com/api/v1/availability/findStripAvailability/`,
+        `https://restaurant-c2gx.onrender.com/api/v1/availability/findStripAvailability/${date}`,
         {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ date: date }),
         }
       )
         .then((response) => {
