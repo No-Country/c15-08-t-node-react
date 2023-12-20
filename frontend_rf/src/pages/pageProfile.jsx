@@ -179,7 +179,7 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
             gridColumn: "span 1",
           }}
         >
-          {firstName.charAt(0).toUpperCase() + firstName.slice(1)}
+          {firstName?.charAt(0).toUpperCase() + firstName?.slice(1)}
         </h2>
         <h2
           style={{
@@ -205,7 +205,7 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
             gridColumn: "span 1",
           }}
         >
-          {lastName.charAt(0).toUpperCase() + lastName.slice(1)}
+          {lastName?.charAt(0).toUpperCase() + lastName?.slice(1)}
         </h2>
         <h2
           style={{
