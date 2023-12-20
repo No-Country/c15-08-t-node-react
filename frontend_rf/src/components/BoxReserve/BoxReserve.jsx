@@ -9,7 +9,8 @@ function BoxReserve({ reserveId, time, date, cancel = false, people = null }) {
         width: "82%",
         height: "auto",
         padding: "5px 10px",
-        backgroundColor: mainColors.backBrownOpaque,
+        backgroundColor: mainColors.backWhite,
+        boxShadow: "0px 0px 5px 0px rgba(37, 37, 37, .35)",
       }}
     >
       <LayoutGridReserve>
