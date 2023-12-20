@@ -14,7 +14,7 @@ import Navbar from "../src/components/Navbar/Navbar";
 import PageProfile from "../src/pages/pageProfile";
 
 function App() {
-  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [userLoggedIn, setUserLoggedIn] = useState(localStorage !== null);
   return (
     <BrowserRouter>
       <Navbar setUserLoggedIn={setUserLoggedIn} userLoggedIn={userLoggedIn} />
