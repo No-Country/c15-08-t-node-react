@@ -17,6 +17,12 @@ function Navbar({ userLoggedIn, setUserLoggedIn }) {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("user")) {
+      setUserLoggedIn(true);
+    }
+  }, []);
+
+  useEffect(() => {
     console.log(localStorage.getItem("user"));
     if (userLoggedIn) {
       setName(
@@ -46,7 +52,7 @@ function Navbar({ userLoggedIn, setUserLoggedIn }) {
         <li onClick={() => setOpenMenu(false)}>
           <Link to={"/home"}>Menú</Link>
         </li>
-        {userLoggedIn ? (
+        {userLoggedIn && localStorage !== null ? (
           <>
             <li onClick={() => setOpenMenu(false)}>
               <Link to={`/reservations/${userId}`}>Mis reservas</Link>

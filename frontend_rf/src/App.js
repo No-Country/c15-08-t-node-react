@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import PageLogin from "../src/pages/pageLogin";
@@ -14,7 +14,13 @@ import Navbar from "../src/components/Navbar/Navbar";
 import PageProfile from "../src/pages/pageProfile";
 
 function App() {
-  const [userLoggedIn, setUserLoggedIn] = useState(localStorage !== null);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      setUserLoggedIn(true);
+    }
+  }, []);
+
   return (
     <BrowserRouter>
       <Navbar setUserLoggedIn={setUserLoggedIn} userLoggedIn={userLoggedIn} />
