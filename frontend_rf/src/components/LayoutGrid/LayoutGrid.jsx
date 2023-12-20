@@ -18,4 +18,22 @@ function LayoutGrid({ children }) {
   );
 }
 
+export function LayoutGridReserve({ children }) {
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        width: "max(320px, 30%)",
+        gap: "3px",
+        alignContent: "center",
+        alignItems: "center",
+        marginBottom: "14px",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default LayoutGrid;

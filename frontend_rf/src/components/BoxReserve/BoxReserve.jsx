@@ -1,73 +1,74 @@
 import React from "react";
 import { mainColors } from "../../styles/mainColors";
-import moment from "moment";
-import LayoutGrid from "../../components/LayoutGrid/LayoutGrid";
+import { LayoutGridReserve } from "../../components/LayoutGrid/LayoutGrid";
 
-function BoxReserve({ reserveId, time, date }) {
-  const passed = moment(date).isBefore();
+function BoxReserve({ reserveId, time, date, cancel = false, people = null }) {
   return (
     <div
       style={{
         width: "82%",
         height: "auto",
-        padding: "10px",
+        padding: "5px 10px",
         backgroundColor: mainColors.backBrownOpaque,
       }}
     >
-      <LayoutGrid>
+      <LayoutGridReserve>
         <h2
           style={{
             fontFamily: "PoppinsMedium",
             fontWeight: "800",
-            fontSize: "14px",
+            fontSize: "11px",
             textAlign: "left",
-            margin: "0",
-            gridColumn: "span 1",
-            color: mainColors.textBlack,
+            marginBottom: "-10px",
+            gridColumn: "span 2",
+            color: mainColors.textDisabled,
           }}
         >
-          Fecha: {date}
-        </h2>
-        <h2
-          style={{
-            fontFamily: "PoppinsMedium",
-            fontWeight: "800",
-            fontSize: "10px",
-            textAlign: "right",
-            alignSelf: "start",
-            margin: "0",
-            gridColumn: "span 1",
-            color: mainColors.textBlack,
-          }}
-        >
-          {reserveId}
+          {cancel ? "Reserva cancelada" : "Reserva confirmada"}
         </h2>
         <h2
           style={{
             fontFamily: "PoppinsMedium",
             fontWeight: "400",
-            margin: "0",
-            fontSize: "14px",
-            color: mainColors.textBlack,
+            fontSize: "10px",
             textAlign: "left",
+            alignSelf: "start",
+            marginBottom: "-10px",
+            gridColumn: "span 2",
+            color: mainColors.textDisabled,
           }}
         >
-          Hora: {time}
+          {date}
         </h2>
         <h2
           style={{
             fontFamily: "PoppinsMedium",
-            margin: "0",
-            fontWeight: "800",
-            fontSize: "24px",
-            color: mainColors.textBlack,
-            textAlign: "center",
-            gridColumn: "span 2",
+            fontWeight: "400",
+            fontSize: "10px",
+            textAlign: "left",
+            alignSelf: "start",
+            marginBottom: "-10px",
+            gridColumn: "span 1",
+            color: mainColors.textDisabled,
           }}
         >
-          {!passed ? "En curso" : "Pasada"}
+          {time}hs
         </h2>
-      </LayoutGrid>
+        <h2
+          style={{
+            fontFamily: "PoppinsMedium",
+            fontWeight: "400",
+            fontSize: "10px",
+            textAlign: "right",
+            alignSelf: "start",
+            marginBottom: "-10px",
+            gridColumn: "span 1",
+            color: mainColors.textDisabled,
+          }}
+        >
+          {people ? `${people} personas` : ""}
+        </h2>
+      </LayoutGridReserve>
     </div>
   );
 }
