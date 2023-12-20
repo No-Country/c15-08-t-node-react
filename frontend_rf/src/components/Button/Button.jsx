@@ -33,7 +33,7 @@ function Button({ text, click, loading = false }) {
     >
       {loading ? (
         <Spinner
-          size={11.2}
+          size={12.8}
           color={mainColors.textWhite}
           style={{ textAlign: "center" }}
         />
