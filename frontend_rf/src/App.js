@@ -17,7 +17,7 @@ function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   return (
     <BrowserRouter>
-      <Navbar userLoggedIn={userLoggedIn} />
+      <Navbar setUserLoggedIn={setUserLoggedIn} userLoggedIn={userLoggedIn} />
       <Routes>
         {
           // Default route

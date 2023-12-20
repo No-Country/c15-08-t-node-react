@@ -10,6 +10,7 @@ function LayoutGrid({ children }) {
         gap: "11px",
         alignContent: "center",
         alignItems: "center",
+        marginBottom: "14px",
       }}
     >
       {children}

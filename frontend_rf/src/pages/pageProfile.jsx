@@ -13,6 +13,7 @@ import Button from "../components/Button/Button";
 import {
   InputPassEditable,
   InputTelEditable,
+  InputTextEditable,
 } from "../components/InputText/InputEditable";
 
 function PageProfile({ userLoggedIn, setUserLoggedIn }) {
@@ -22,21 +23,17 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
     JSON.parse(localStorage.getItem("user"))?.email
   );
   const [firstName, setFirstName] = useState(
-    JSON.parse(localStorage.getItem("user"))?.firstname.toLowerCase()
+    JSON.parse(localStorage.getItem("user"))?.firstname
   );
   const [lastName, setLastName] = useState(
-    JSON.parse(localStorage.getItem("user"))?.lastname.toLowerCase()
+    JSON.parse(localStorage.getItem("user"))?.lastname
   );
   const [tel, setTel] = useState(
     JSON.parse(localStorage.getItem("user"))?.phone
   );
   const [pass, setPass] = useState("0000000000");
   const [loading, setLoading] = useState(false);
-  const handleLogOut = () => {
-    localStorage.clear();
-    setUserLoggedIn(false);
-    navigate("/home");
-  };
+
   useEffect(() => {
     if (!userLoggedIn) {
       navigate("/signup");
@@ -106,38 +103,13 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
         Datos de la cuenta
       </h2>
       <LayoutGrid>
+        <InputTextEditable label={email} setText={setEmail} text={email} />
+        <InputPassEditable pass={pass} setPass={setPass} />
         <Button
-          text={"Mis reservas"}
-          click={() => navigate(`/reservations/${userId}`)}
+          loading={loading}
+          text={"Guardar cambios"}
+          click={handleChanges}
         />
-        <h2
-          style={{
-            fontFamily: "PoppinsMedium",
-            fontWeight: "800",
-            fontSize: "13px",
-            textAlign: "left",
-            marginBottom: "0px",
-            color: mainColors.textBlack,
-            gridColumn: "span 1",
-          }}
-        >
-          Correo
-        </h2>
-
-        <h2
-          style={{
-            marginTop: "2vh",
-            fontFamily: "PoppinsMedium",
-            fontWeight: "200",
-            fontSize: "13px",
-            textAlign: "left",
-            marginBottom: "10px",
-            color: mainColors.textBlack,
-            gridColumn: "span 1",
-          }}
-        >
-          {email}
-        </h2>
       </LayoutGrid>
       <h2
         style={{
@@ -155,71 +127,16 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
         Datos personales
       </h2>
       <LayoutGrid>
-        <h2
-          style={{
-            fontFamily: "PoppinsMedium",
-            fontWeight: "800",
-            fontSize: "13px",
-            textAlign: "left",
-            marginBottom: "10px",
-            color: mainColors.textBlack,
-            gridColumn: "span 1",
-          }}
-        >
-          Nombre
-        </h2>
-        <h2
-          style={{
-            fontFamily: "PoppinsMedium",
-            fontWeight: "300",
-            fontSize: "13px",
-            textAlign: "left",
-            marginBottom: "0px",
-            color: mainColors.textBlack,
-            gridColumn: "span 1",
-          }}
-        >
-          {firstName?.charAt(0).toUpperCase() + firstName?.slice(1)}
-        </h2>
-        <h2
-          style={{
-            fontFamily: "PoppinsMedium",
-            fontWeight: "800",
-            fontSize: "13px",
-            textAlign: "left",
-            marginBottom: "0px",
-            color: mainColors.textBlack,
-            gridColumn: "span 1",
-          }}
-        >
-          Apellido
-        </h2>
-        <h2
-          style={{
-            fontFamily: "PoppinsMedium",
-            fontWeight: "300",
-            fontSize: "13px",
-            textAlign: "left",
-            marginBottom: "10px",
-            color: mainColors.textBlack,
-            gridColumn: "span 1",
-          }}
-        >
-          {lastName?.charAt(0).toUpperCase() + lastName?.slice(1)}
-        </h2>
-        <h2
-          style={{
-            fontFamily: "PoppinsMedium",
-            fontWeight: "800",
-            fontSize: "13px",
-            textAlign: "left",
-            marginBottom: "10px",
-            color: mainColors.textBlack,
-            gridColumn: "span 1",
-          }}
-        >
-          Telefono
-        </h2>
+        <InputTextEditable
+          label={firstName}
+          setText={setFirstName}
+          text={firstName?.charAt(0).toUpperCase() + firstName?.slice(1)}
+        />
+        <InputTextEditable
+          label={lastName}
+          setText={setLastName}
+          text={lastName?.charAt(0).toUpperCase() + lastName?.slice(1)}
+        />
         <InputTelEditable tel={tel} setTel={setTel} />
         <Button
           loading={loading}
@@ -227,8 +144,6 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
           click={handleChanges}
         />
       </LayoutGrid>
-
-      <Button text={"Cerrar sesión"} click={handleLogOut} />
     </ViewDefault>
   );
 }

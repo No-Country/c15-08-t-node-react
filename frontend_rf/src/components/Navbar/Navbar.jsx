@@ -3,14 +3,22 @@ import React, { useState, useEffect } from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import ImageEpicureos from "../ImageEpicureos/ImageEpicureos";
-function Navbar({ userLoggedIn }) {
+import { useNavigate } from "react-router-dom";
+function Navbar({ userLoggedIn, setUserLoggedIn }) {
+  let navigate = useNavigate();
   const [openMenu, setOpenMenu] = useState(false);
   const [name, setName] = useState("");
   const [userId, setUserId] = useState("");
+
+  const handleLogOut = () => {
+    localStorage.clear();
+    setUserLoggedIn(false);
+    navigate("/home");
+  };
+
   useEffect(() => {
     console.log(localStorage.getItem("user"));
     if (userLoggedIn) {
-      console.log("valid");
       setName(
         JSON.parse(localStorage.getItem("user"))?.firstname?.toLowerCase()
       );
@@ -20,6 +28,7 @@ function Navbar({ userLoggedIn }) {
       setUserId(undefined);
     }
   }, [userLoggedIn]);
+
   return (
     <nav
       onMouseLeave={() => {
@@ -30,20 +39,6 @@ function Navbar({ userLoggedIn }) {
       <div className="menu" onClick={() => setOpenMenu(!openMenu)}>
         <ion-icon name="menu-outline"></ion-icon>
       </div>
-      {userLoggedIn && (
-        <h3>
-          Bienvenido!{" "}
-          <span
-            style={{
-              fontWeight: 700,
-              fontFamily: "PoppinsMedium",
-              textDecoration: "underline",
-            }}
-          >
-            {name}
-          </span>
-        </h3>
-      )}
       <ul className={openMenu ? "open" : ""}>
         <li onClick={() => setOpenMenu(false)}>
           <Link to={"/home"}>Inicio</Link>
@@ -51,12 +46,23 @@ function Navbar({ userLoggedIn }) {
         <li onClick={() => setOpenMenu(false)}>
           <Link to={"/home"}>Menú</Link>
         </li>
-        <li onClick={() => setOpenMenu(false)}>
-          <Link to={"/reserve"}>Reservar</Link>
-        </li>
-        <li onClick={() => setOpenMenu(false)}>
-          <Link to={`/profile/${userId}`}>Perfil</Link>
-        </li>
+        {userLoggedIn ? (
+          <>
+            <li onClick={() => setOpenMenu(false)}>
+              <Link to={`/reservations/${userId}`}>Mis reservas</Link>
+            </li>
+            <li onClick={() => setOpenMenu(false)}>
+              <Link to={`/profile/${userId}`}>Mis datos</Link>
+            </li>
+            <li onClick={handleLogOut}>
+              <Link to={`/home`}>Cerrar sesión</Link>
+            </li>
+          </>
+        ) : (
+          <li onClick={() => setOpenMenu(false)}>
+            <Link to={"/login"}>Iniciar sesión</Link>
+          </li>
+        )}
       </ul>
     </nav>
   );

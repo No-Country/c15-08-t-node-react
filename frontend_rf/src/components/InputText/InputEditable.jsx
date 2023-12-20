@@ -38,11 +38,27 @@ export const InputTelEditable = ({ tel, setTel }) => {
     </>
   );
 };
+export const InputTextEditable = ({ text, setText, label }) => {
+  const onChangeText = (event) => {
+    setText(event.target.value);
+  };
+
+  return (
+    <>
+      <InputEditable2
+        type="text"
+        label={label}
+        value={text}
+        onChange={onChangeText}
+      />
+    </>
+  );
+};
 
 const InputEditable = ({ type, label, value, onChange }) => {
   const [disabled, setDisabled] = useState(true);
   return (
-    <div style={{ ...styles.containernom }}>
+    <div style={{ ...styles.container }}>
       <input
         disabled={disabled}
         autoComplete="false"
@@ -76,6 +92,24 @@ const InputEditable = ({ type, label, value, onChange }) => {
           Editar
         </h2>
       </div>
+    </div>
+  );
+};
+
+const InputEditable2 = ({ type, label, value, onChange }) => {
+  const [disabled, setDisabled] = useState(true);
+  return (
+    <div style={{ ...styles.container }}>
+      <input
+        disabled={disabled}
+        autoComplete="false"
+        style={styles.input}
+        type={type}
+        id={type}
+        value={value}
+        onChange={onChange}
+        placeholder={label}
+      />
     </div>
   );
 };
