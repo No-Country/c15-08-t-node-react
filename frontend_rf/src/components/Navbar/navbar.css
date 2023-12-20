@@ -73,6 +73,7 @@ nav .menu span {
     top: 2.5vh;
     right: -82vw;
     position: absolute;
+    z-index: 2;
     
   }
   nav ul {
@@ -89,7 +90,8 @@ nav ul.open {
     top: 7vh;
     right: 0;
     background-color: rgba(219, 210, 201, 1);
-    padding: 20px 0
+    padding: 20px 0;
+    z-index: 2;
 }
 h3 {
   display: block;
