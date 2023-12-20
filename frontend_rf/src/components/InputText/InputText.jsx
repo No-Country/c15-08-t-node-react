@@ -7,6 +7,7 @@ const Input = ({ type, label, value, onChange, placeholderError = false }) => {
   return (
     <div style={{ ...styles.container }}>
       <input
+        autoComplete="false"
         className={placeholderError ? "placeholderError error" : ""}
         style={styles.input}
         type={type}

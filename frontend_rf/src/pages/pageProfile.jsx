@@ -5,23 +5,33 @@ import { mainColors } from "../styles/mainColors";
 import LayoutGrid from "../components/LayoutGrid/LayoutGrid";
 import ViewDefault from "../components/ViewDefault/ViewDefault";
 
-import ImageEpicureos from "../components/ImageEpicureos/ImageEpicureos";
-import { Link, useParams } from "react-router-dom";
-import ButtonProfile from "../components/Button/ButtonProfile";
+
+import { useParams } from "react-router-dom";
+
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button/Button";
 import {
-  InputPassShort,
-  InputTelShort,
-} from "../components/InputText/InputText";
+  InputPassEditable,
+  InputTelEditable,
+} from "../components/InputText/InputEditable";
+
 function PageProfile({ userLoggedIn, setUserLoggedIn }) {
   let navigate = useNavigate();
   const { userId } = useParams();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [tel, setTel] = useState("");
-  const [pass, setPass] = useState("");
-
+  const [email, setEmail] = useState(
+    JSON.parse(localStorage.getItem("user"))?.email
+  );
+  const [firstName, setFirstName] = useState(
+    JSON.parse(localStorage.getItem("user"))?.firstname.toLowerCase()
+  );
+  const [lastName, setLastName] = useState(
+    JSON.parse(localStorage.getItem("user"))?.lastname.toLowerCase()
+  );
+  const [tel, setTel] = useState(
+    JSON.parse(localStorage.getItem("user"))?.phone
+  );
+  const [pass, setPass] = useState("0000000000");
+  const [loading, setLoading] = useState(false);
   const handleLogOut = () => {
     localStorage.clear();
     setUserLoggedIn(false);
@@ -33,28 +43,123 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
       setUserLoggedIn(false);
     }
   });
+
+  const handleChanges = async () => {
+    setLoading(true);
+    await fetch(`https://restaurant-c2gx.onrender.com/api/v1/user/user`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: userId,
+        lastname: lastName,
+        firstname: firstName,
+        phone: tel,
+        email: email,
+      }),
+    })
+      .then((response) => {
+        if (response.status === 200) {
+          alert("Se actualizaron tus datos");
+          setLoading(false);
+        } else if (response.status === 400) {
+          setLoading(false);
+        } else {
+          setLoading(false);
+        }
+      })
+
+      .catch((error) => console.log(error));
+  };
+
   return (
     <ViewDefault>
       <h2
         style={{
+          paddingLeft: "38px",
           marginTop: "2vh",
           fontFamily: "PoppinsMedium",
           fontWeight: "800",
-          fontSize: "18px",
-          textAlign: "center",
-          marginBottom: "10px",
+          fontSize: "16px",
+          textAlign: "left",
+          marginBottom: "-5px",
           color: mainColors.textBlack,
+          alignSelf: "flex-start",
         }}
       >
-        Perfil
+        MIS DATOS
+      </h2>
+      <h2
+        style={{
+          paddingLeft: "35px",
+          marginTop: "2px",
+          fontFamily: "PoppinsMedium",
+          fontWeight: "300",
+          fontSize: "14px",
+          textAlign: "left",
+          marginBottom: "-5px",
+          color: mainColors.textBlack,
+          alignSelf: "flex-start",
+        }}
+      >
+        Datos de la cuenta
       </h2>
       <LayoutGrid>
+        <Button
+          text={"Mis reservas"}
+          click={() => navigate(`/reservations/${userId}`)}
+        />
+        <h2
+          style={{
+            fontFamily: "PoppinsMedium",
+            fontWeight: "800",
+            fontSize: "13px",
+            textAlign: "left",
+            marginBottom: "0px",
+            color: mainColors.textBlack,
+            gridColumn: "span 1",
+          }}
+        >
+          Correo
+        </h2>
+
         <h2
           style={{
             marginTop: "2vh",
             fontFamily: "PoppinsMedium",
+            fontWeight: "200",
+            fontSize: "13px",
+            textAlign: "left",
+            marginBottom: "10px",
+            color: mainColors.textBlack,
+            gridColumn: "span 1",
+          }}
+        >
+          {email}
+        </h2>
+      </LayoutGrid>
+      <h2
+        style={{
+          paddingLeft: "35px",
+          marginTop: "2px",
+          fontFamily: "PoppinsMedium",
+          fontWeight: "300",
+          fontSize: "14px",
+          textAlign: "left",
+          marginBottom: "-5px",
+          color: mainColors.textBlack,
+          alignSelf: "flex-start",
+        }}
+      >
+        Datos personales
+      </h2>
+      <LayoutGrid>
+        <h2
+          style={{
+            fontFamily: "PoppinsMedium",
             fontWeight: "800",
-            fontSize: "14px",
+            fontSize: "13px",
             textAlign: "left",
             marginBottom: "10px",
             color: mainColors.textBlack,
@@ -63,15 +168,26 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
         >
           Nombre
         </h2>
-
         <h2
           style={{
-            marginTop: "2vh",
+            fontFamily: "PoppinsMedium",
+            fontWeight: "300",
+            fontSize: "13px",
+            textAlign: "left",
+            marginBottom: "0px",
+            color: mainColors.textBlack,
+            gridColumn: "span 1",
+          }}
+        >
+          {firstName.charAt(0).toUpperCase() + firstName.slice(1)}
+        </h2>
+        <h2
+          style={{
             fontFamily: "PoppinsMedium",
             fontWeight: "800",
-            fontSize: "14px",
+            fontSize: "13px",
             textAlign: "left",
-            marginBottom: "10px",
+            marginBottom: "0px",
             color: mainColors.textBlack,
             gridColumn: "span 1",
           }}
@@ -80,38 +196,22 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
         </h2>
         <h2
           style={{
-            marginTop: "2vh",
             fontFamily: "PoppinsMedium",
             fontWeight: "300",
-            fontSize: "14px",
+            fontSize: "13px",
             textAlign: "left",
             marginBottom: "10px",
             color: mainColors.textBlack,
             gridColumn: "span 1",
           }}
         >
-          Stefano
+          {lastName.charAt(0).toUpperCase() + lastName.slice(1)}
         </h2>
         <h2
           style={{
-            marginTop: "2vh",
-            fontFamily: "PoppinsMedium",
-            fontWeight: "300",
-            fontSize: "14px",
-            textAlign: "left",
-            marginBottom: "10px",
-            color: mainColors.textBlack,
-            gridColumn: "span 1",
-          }}
-        >
-          Frisoni
-        </h2>
-        <h2
-          style={{
-            marginTop: "2vh",
             fontFamily: "PoppinsMedium",
             fontWeight: "800",
-            fontSize: "14px",
+            fontSize: "13px",
             textAlign: "left",
             marginBottom: "10px",
             color: mainColors.textBlack,
@@ -120,37 +220,15 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
         >
           Telefono
         </h2>
-        <h2
-          style={{
-            marginTop: "2vh",
-            fontFamily: "PoppinsMedium",
-            fontWeight: "300",
-            fontSize: "14px",
-            textAlign: "left",
-            marginBottom: "10px",
-            color: mainColors.textBlack,
-            gridColumn: "span 1",
-          }}
-        >
-          6141694297
-        </h2>
-        <InputTelShort tel={tel} setTel={setTel} />
-
-        <ButtonProfile
-          text={"Cambiar"}
-          click={() => console.log("Cambiar telefono")}
-        />
-        <InputPassShort pass={pass} setPass={setPass} />
-        <ButtonProfile
-          text={"Cambiar"}
-          click={() => console.log("Cambiar contrasena")}
-        />
+        <InputTelEditable tel={tel} setTel={setTel} />
         <Button
-          text={"Mis reservas"}
-          click={() => navigate(`/reservations/${userId}`)}
+          loading={loading}
+          text={"Guardar cambios"}
+          click={handleChanges}
         />
-        <Button text={"Cerrar sesión"} click={handleLogOut} />
       </LayoutGrid>
+
+      <Button text={"Cerrar sesión"} click={handleLogOut} />
     </ViewDefault>
   );
 }

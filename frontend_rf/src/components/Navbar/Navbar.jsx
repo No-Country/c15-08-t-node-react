@@ -7,7 +7,6 @@ function Navbar({ userLoggedIn }) {
   const [openMenu, setOpenMenu] = useState(false);
   const [name, setName] = useState("");
   const [userId, setUserId] = useState("");
-
   useEffect(() => {
     console.log(localStorage.getItem("user"));
     if (userLoggedIn) {
@@ -16,8 +15,10 @@ function Navbar({ userLoggedIn }) {
         JSON.parse(localStorage.getItem("user"))?.firstname?.toLowerCase()
       );
       setUserId(JSON.parse(localStorage.getItem("user"))?.id);
+    } else {
+      setName("");
+      setUserId(undefined);
     }
-    setUserId(undefined);
   }, [userLoggedIn]);
   return (
     <nav
@@ -29,18 +30,20 @@ function Navbar({ userLoggedIn }) {
       <div className="menu" onClick={() => setOpenMenu(!openMenu)}>
         <ion-icon name="menu-outline"></ion-icon>
       </div>
-      <h3>
-        Bienvenido!{" "}
-        <span
-          style={{
-            fontWeight: 700,
-            fontFamily: "PoppinsMedium",
-            textDecoration: "underline",
-          }}
-        >
-          {name}
-        </span>
-      </h3>
+      {userLoggedIn && (
+        <h3>
+          Bienvenido!{" "}
+          <span
+            style={{
+              fontWeight: 700,
+              fontFamily: "PoppinsMedium",
+              textDecoration: "underline",
+            }}
+          >
+            {name}
+          </span>
+        </h3>
+      )}
       <ul className={openMenu ? "open" : ""}>
         <li onClick={() => setOpenMenu(false)}>
           <Link to={"/home"}>Inicio</Link>

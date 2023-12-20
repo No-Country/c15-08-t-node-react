@@ -5,7 +5,7 @@ import Button from "../../components/Button/Button";
 import "./inputOTPValidation.css";
 import LayoutGrid from "../../components/LayoutGrid/LayoutGrid";
 import { useNavigate } from "react-router-dom";
-
+import { mainColors } from "../../styles/mainColors";
 function InputOTPValidation({ setUserLogged }) {
   let navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -41,7 +41,7 @@ function InputOTPValidation({ setUserLogged }) {
         } else if (response.status === 400) {
           console.log(error);
           setLoading(false);
-          setError(false);
+          setError(true);
         } else {
           setLoading(false);
           setError(false);
@@ -62,6 +62,22 @@ function InputOTPValidation({ setUserLogged }) {
           container: "container",
         }}
       />
+      {error && (
+        <h2
+          style={{
+            marginTop: "2vh",
+            fontFamily: "PoppinsMedium",
+            fontWeight: "300",
+            fontSize: "14px",
+            textAlign: "left",
+            marginBottom: "10px",
+            color: mainColors.textBlack,
+            gridColumn: "span 1",
+          }}
+        >
+          Codigo Invalido
+        </h2>
+      )}
       <Button text={"Validar"} loading={loading} click={handleVerification} />
     </LayoutGrid>
   );
