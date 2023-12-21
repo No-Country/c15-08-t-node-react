@@ -72,61 +72,60 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
 
   return (
     <ViewDefault>
-      <h2
-        style={{
-          paddingLeft: "38px",
-          marginTop: "2vh",
-          fontFamily: "PoppinsMedium",
-          fontWeight: "800",
-          fontSize: "16px",
-          textAlign: "left",
-          marginBottom: "-5px",
-          color: mainColors.textBlack,
-          alignSelf: "flex-start",
-        }}
-      >
-        MIS DATOS
-      </h2>
-      <h2
-        style={{
-          paddingLeft: "35px",
-          marginTop: "2px",
-          fontFamily: "PoppinsMedium",
-          fontWeight: "300",
-          fontSize: "14px",
-          textAlign: "left",
-          marginBottom: "-5px",
-          color: mainColors.textBlack,
-          alignSelf: "flex-start",
-        }}
-      >
-        Datos de la cuenta
-      </h2>
       <LayoutGrid>
+        <h2
+          style={{
+            paddingLeft: "10px",
+            marginTop: "2vh",
+            fontFamily: "PoppinsMedium",
+            fontWeight: "800",
+            fontSize: "16px",
+            textAlign: "left",
+            marginBottom: "-5px",
+            color: mainColors.textBlack,
+            alignSelf: "flex-start",
+            gridColumn: "span 2",
+          }}
+        >
+          MIS DATOS
+        </h2>
+        <h2
+          style={{
+            paddingLeft: "2px",
+            marginTop: "2px",
+            fontFamily: "PoppinsMedium",
+            fontWeight: "300",
+            fontSize: "14px",
+            textAlign: "left",
+            marginBottom: "-5px",
+            color: mainColors.textBlack,
+            alignSelf: "flex-start",
+            gridColumn: "span 2",
+          }}
+        >
+          Datos de la cuenta
+        </h2>
         <InputTextEditable label={email} setText={setEmail} text={email} />
         <InputPassEditable pass={pass} setPass={setPass} />
-        <Button
-          loading={loading}
-          text={"Guardar cambios"}
-          click={handleChanges}
-        />
       </LayoutGrid>
-      <h2
-        style={{
-          paddingLeft: "35px",
-          marginTop: "2px",
-          fontFamily: "PoppinsMedium",
-          fontWeight: "300",
-          fontSize: "14px",
-          textAlign: "left",
-          marginBottom: "-5px",
-          color: mainColors.textBlack,
-          alignSelf: "flex-start",
-        }}
-      >
-        Datos personales
-      </h2>
+
       <LayoutGrid>
+        <h2
+          style={{
+            paddingLeft: "2px",
+            marginTop: "2px",
+            fontFamily: "PoppinsMedium",
+            fontWeight: "300",
+            fontSize: "14px",
+            textAlign: "left",
+            marginBottom: "-5px",
+            color: mainColors.textBlack,
+            alignSelf: "flex-start",
+            gridColumn: "span 2",
+          }}
+        >
+          Datos personales
+        </h2>
         <InputTextEditable
           label={firstName}
           setText={setFirstName}

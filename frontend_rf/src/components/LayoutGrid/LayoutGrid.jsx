@@ -24,11 +24,29 @@ export function LayoutGridReserve({ children }) {
       style={{
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
+        width: "100%",
+        alignContent: "center",
+        alignItems: "center",
+        marginBottom: "14px",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function LayoutGridReservations({ children }) {
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "12fr 1fr",
         width: "max(320px, 30%)",
         gap: "3px",
         alignContent: "center",
         alignItems: "center",
-        marginBottom: "14px",
+        justifyItems: "flex-start",
+        marginBottom: "4px",
       }}
     >
       {children}

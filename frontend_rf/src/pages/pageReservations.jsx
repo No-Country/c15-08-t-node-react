@@ -7,10 +7,42 @@ import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
 import ViewDefault from "../components/ViewDefault/ViewDefault";
 import moment from "moment";
+import LayoutGrid, {
+  LayoutGridReservations,
+} from "../components/LayoutGrid/LayoutGrid";
 function PageReservations() {
   const { userId } = useParams();
   const [reserves, setReserves] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const handleFetchReserve = async () => {
+    setLoading(true);
+    await fetch(
+      `https://restaurant-c2gx.onrender.com/api/v1/booking/showReservation/${userId}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          setLoading(false);
+          return response.json();
+        } else if (response.status === 400) {
+          setLoading(false);
+        } else {
+          setLoading(false);
+        }
+      })
+      .then((reserves) => {
+        console.log(reserves);
+        setReserves(reserves);
+      })
+      .catch((error) => console.log(error));
+  };
 
   useEffect(() => {
     const handleFetchReserve = async () => {
@@ -45,36 +77,40 @@ function PageReservations() {
   }, [userId]);
   return (
     <ViewDefault>
-      <h2
-        style={{
-          paddingLeft: "38px",
-          marginTop: "2vh",
-          fontFamily: "PoppinsMedium",
-          fontWeight: "800",
-          fontSize: "16px",
-          textAlign: "left",
-          marginBottom: "-5px",
-          color: mainColors.textBlack,
-          alignSelf: "flex-start",
-        }}
-      >
-        MIS RESERVAS
-      </h2>
-      <h2
-        style={{
-          paddingLeft: "35px",
-          marginTop: "2px",
-          fontFamily: "PoppinsMedium",
-          fontWeight: "300",
-          fontSize: "14px",
-          textAlign: "left",
-          marginBottom: "-5px",
-          color: mainColors.textBlack,
-          alignSelf: "flex-start",
-        }}
-      >
-        En curso
-      </h2>
+      <LayoutGrid>
+        <h2
+          style={{
+            paddingLeft: "10px",
+            marginTop: "2vh",
+            fontFamily: "PoppinsMedium",
+            fontWeight: "800",
+            fontSize: "16px",
+            textAlign: "left",
+            marginBottom: "-5px",
+            color: mainColors.textBlack,
+            alignSelf: "flex-start",
+            gridColumn: "span 2",
+          }}
+        >
+          MIS RESERVAS
+        </h2>
+        <h2
+          style={{
+            paddingLeft: "2px",
+            marginTop: "2px",
+            fontFamily: "PoppinsMedium",
+            fontWeight: "300",
+            fontSize: "14px",
+            textAlign: "left",
+            marginBottom: "-5px",
+            color: mainColors.textBlack,
+            alignSelf: "flex-start",
+            gridColumn: "span 2",
+          }}
+        >
+          En curso
+        </h2>
+      </LayoutGrid>
       {loading ? (
         <Spinner
           size={17}
@@ -101,31 +137,37 @@ function PageReservations() {
             if (moment(reserve.date).isSameOrAfter()) {
               return (
                 <BoxReserve
-                  reserveId={reserve.id.substring(0, 6)}
+                  after={true}
+                  reserveId={reserve.id.slice(-7)}
                   time={reserve.schedule}
                   date={moment(reserve.date).format("DD/MM/YYYY")}
                   people={reserve.diners}
                   cancel={reserve.status === "reserved" ? false : true}
+                  onclick={handleFetchReserve}
                 ></BoxReserve>
               );
             }
           })
       )}
-      <h2
-        style={{
-          paddingLeft: "35px",
-          marginTop: "2px",
-          fontFamily: "PoppinsMedium",
-          fontWeight: "300",
-          fontSize: "14px",
-          textAlign: "left",
-          marginBottom: "-5px",
-          color: mainColors.textBlack,
-          alignSelf: "flex-start",
-        }}
-      >
-        Anteriores
-      </h2>
+      <LayoutGrid>
+        <h2
+          style={{
+            paddingLeft: "2px",
+            marginTop: "2px",
+            fontFamily: "PoppinsMedium",
+            fontWeight: "300",
+            fontSize: "14px",
+            textAlign: "left",
+            marginBottom: "-5px",
+            color: mainColors.textBlack,
+            alignSelf: "flex-start",
+            gridColumn: "span 2",
+          }}
+        >
+          Anteriores
+        </h2>
+      </LayoutGrid>
+
       {loading ? (
         <Spinner
           size={17}
@@ -155,6 +197,9 @@ function PageReservations() {
                   reserveId={reserve.id.substring(0, 6)}
                   time={reserve.schedule}
                   date={moment(reserve.date).format("DD/MM/YYYY")}
+                  people={reserve.diners}
+                  cancel={reserve.status === "reserved" ? false : true}
+                  after={false}
                 ></BoxReserve>
               );
             }
