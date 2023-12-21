@@ -134,10 +134,8 @@ function PageReservations() {
         reserves
           .sort((a, b) => (a.date > b.date ? -1 : 1))
           .map((reserve) => {
-            if (
-              moment(reserve.date).isSameOrAfter() &&
-              reserve.status === "reserved"
-            ) {
+            const date = reserve.date + " " + reserve.schedule;
+            if (moment(date).isSameOrAfter() && reserve.status === "reserved") {
               return (
                 <BoxReserve
                   after={true}
@@ -194,10 +192,9 @@ function PageReservations() {
         reserves
           .sort((a, b) => (a.date > b.date ? -1 : 1))
           .map((reserve) => {
-            if (
-              moment(reserve.date).isBefore() ||
-              reserve.status !== "reserved"
-            ) {
+            const date = reserve.date + " " + reserve.schedule;
+
+            if (moment(date).isBefore() || reserve.status !== "reserved") {
               return (
                 <BoxReserve
                   reserveId={reserve.id.substring(0, 6)}
