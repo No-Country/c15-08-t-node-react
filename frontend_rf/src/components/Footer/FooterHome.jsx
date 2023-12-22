@@ -1,22 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logochico from "../../assets/images/logochico.png";
+import './footerhome.css'; // Adjust the path if needed
+import LayoutGrid3 from "../LayoutGrid/LayoutGrid";
+
 
 const FooterHome = () => {
   return (
     <footer className="footer" >
-      <div className="container"> {/* Added container */}
       <div className="footer-content" style={{ backgroundColor: "#DBD2C9" }}>
+        <LayoutGrid3>
+          
           <img src={logochico} alt="Logo" />
-         
+
+         <div>
           <div className="contact">
-            <ul>
+            <ul className="info-contacts">
               <li>
-                <strong>Dirección:</strong>
+              
                 <span>Lennox 2308, Funes</span>
               </li>
               <li>
-                <strong>Teléfono:</strong>
+              
                 <span>3413286880</span>
               </li>
               <li>
@@ -36,15 +41,17 @@ const FooterHome = () => {
               </li>
             </ul>
           </div>
+          </div>
           <div className="info">
-            <ul>
-              <li><Link to="/reservar">Reservar</Link></li>
-              <li><Link to="/nuestracarta">Nuestra Carta</Link></li>
-              <li><Link to="/sobrenosotros">Sobre Nosotros</Link></li>
+            <ul className="info-links">
+              <li><Link to="/reserve">Reservar</Link></li>
+              <li><Link to="/menu">Nuestra Carta</Link></li>
+              <li><Link to="/about">Sobre Nosotros</Link></li>
             </ul>
           </div>
+         
+          </LayoutGrid3>
         </div>
-      </div>
     </footer>
   );
 };

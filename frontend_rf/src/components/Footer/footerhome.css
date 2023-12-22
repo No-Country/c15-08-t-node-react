@@ -1,0 +1,41 @@
+.info {
+    float: right;
+    text-align: center;
+    font-family: Poppins;
+  }
+
+  .info-contacts {
+    display: flex;
+    flex-direction: column;
+    margin-left: -190%;
+    margin-top: 16%; /* Adjust the value as needed */
+    font-family: Poppins;
+    font-size: 0.8em;
+   
+  }
+  
+  .info-links {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0%;
+    margin-top: -49%; /* Adjust the value as needed */
+    margin-right: -350px;
+    font-size: 0.8em;
+   
+
+  }
+
+  .footer-content img {
+    width: 55px;
+    height: 54px;
+    margin-left: 22px;
+   
+  }
+  
+
+  .footer-content {
+    width: 1600px;
+    height: 160px;
+    
+  }
+  
