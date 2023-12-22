@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logochico from "../../assets/images/logochico.png";
 import './footerhome.css'; // Adjust the path if needed
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import LayoutGrid3 from "../LayoutGrid/LayoutGrid";
+
 
 
 const FooterHome = () => {
@@ -24,21 +26,18 @@ const FooterHome = () => {
               
                 <span>3413286880</span>
               </li>
-              <li>
-                <strong>Redes sociales:</strong>
                 <ul>
                   <li>
-                    <a href="https://www.facebook.com/example">
-                      <i className="fab fa-facebook-f"></i>
+                    <a href="https://web.facebook.com/epicureos.funes">
+                     <FaFacebookF />
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.instagram.com/example">
-                      <i className="fab fa-instagram"></i>
+                    <a href="https://www.instagram.com/epicureos.funes/">
+                     <FaInstagram />
                     </a>
                   </li>
                 </ul>
-              </li>
             </ul>
           </div>
           </div>

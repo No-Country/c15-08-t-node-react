@@ -1,7 +1,8 @@
 .info {
     float: right;
-    text-align: center;
     font-family: Poppins;
+    align-content: center;
+
   }
 
   .info-contacts {
@@ -11,6 +12,7 @@
     margin-top: 16%; /* Adjust the value as needed */
     font-family: Poppins;
     font-size: 0.8em;
+    align-content: center;
    
   }
   
@@ -32,6 +34,7 @@
    
   }
   
+
 
   .footer-content {
     width: 1600px;
