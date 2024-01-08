@@ -16,11 +16,11 @@ import {
 function PageReserve({ userLoggedIn }) {
   let navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [time2, setTime2] = useState("");
-  const [people, setPeople] = useState("");
-  const [people2, setPeople2] = useState("");
+  const [date, setDate] = useState();
+  const [time, setTime] = useState();
+  const [time2, setTime2] = useState();
+  const [people, setPeople] = useState();
+  const [people2, setPeople2] = useState();
   const [optionsDate, setOptionsDate] = useState();
   const [optionsTime, setOptionsTime] = useState();
   const [optionsPeople, setOptionsPeople] = useState();
@@ -45,7 +45,6 @@ function PageReserve({ userLoggedIn }) {
         }
       )
         .then((response) => {
-          console.log(response);
           return response.json();
         })
         .then((data) => {
@@ -54,11 +53,10 @@ function PageReserve({ userLoggedIn }) {
         });
     };
     fetchDate();
-  }, [userLoggedIn]);
+  }, []);
 
   useEffect(() => {
     const handleDate = async () => {
-      console.log(date);
       await fetch(
         `https://restaurant-c2gx.onrender.com/api/v1/availability/findStripAvailability/${date}`,
         {
@@ -77,15 +75,13 @@ function PageReserve({ userLoggedIn }) {
           // @ts-ignore
           setData(data);
         });
-      console.log(date);
     };
     handleDate();
-  }, [date, setDate]);
+  }, [setDate, date]);
 
   useEffect(() => {
     const handleTime = async () => {
       let strip = "";
-      console.log(time);
       if (parseInt(time) <= 3) {
         strip = "strip1";
         setStrip(strip);
@@ -93,10 +89,6 @@ function PageReserve({ userLoggedIn }) {
         strip = "strip2";
         setStrip(strip);
       }
-      console.log("data", data);
-      // @ts-ignore
-      console.log(strip);
-      console.log(data[strip]);
       // @ts-ignore
       setOptionsPeople(makeObjectPeople(data[strip]));
     };
@@ -104,7 +96,6 @@ function PageReserve({ userLoggedIn }) {
   }, [setTime, time, data]);
 
   const handleReservation = async () => {
-    console.log(date, time, people);
     setLoading(true);
     if (date === "" || time === "" || people === "") {
       setLoading(false);
@@ -129,9 +120,7 @@ function PageReserve({ userLoggedIn }) {
     )
       .then((response) => {
         if (response.status === 200) {
-          console.log("Reserva Creada");
           setLoading(false);
-
           return response.json();
         } else if (response.status === 400) {
           setLoading(false);
@@ -140,7 +129,6 @@ function PageReserve({ userLoggedIn }) {
         }
       })
       .then((numreserva) => {
-        console.log(numreserva);
         navigate(`/confirmation/${numreserva}`);
       })
       .catch((error) => console.log(error));

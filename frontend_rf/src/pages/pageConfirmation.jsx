@@ -16,6 +16,7 @@ function PageConfirmation() {
   const { reserveId } = useParams();
   const [date, setDate] = useState("fecha");
   const [time, setTime] = useState("hora");
+  const [people, setPeople] = useState();
 
   useEffect(() => {
     const handleFetchReserve = async () => {
@@ -30,7 +31,6 @@ function PageConfirmation() {
         }
       )
         .then((response) => {
-          console.log(response);
           if (response.status === 200) {
             setLoading(false);
             return response.json();
@@ -41,8 +41,10 @@ function PageConfirmation() {
           }
         })
         .then((reserve) => {
+          console.log(reserve);
           setTime(reserve.schedule);
           setDate(moment(reserve.date).format("DD/MM/YYYY"));
+          setPeople(reserve.diners);
         })
         .catch((error) => console.log(error));
     };
@@ -58,9 +60,10 @@ function PageConfirmation() {
           fontSize: "16px",
           marginBottom: "20px",
           color: mainColors.textBlack,
+          marginTop: "20px",
         }}
       >
-        Tu reserva ha sido confirmada
+        TU RESERVA HA SIDO CONFIRMADA
       </h2>
       {loading ? (
         <Spinner
@@ -70,130 +73,145 @@ function PageConfirmation() {
         />
       ) : (
         <>
-          <LayoutGrid>
-            <h2
-              style={{
-                fontFamily: "PoppinsMedium",
-                fontWeight: "300",
-                fontSize: "12px",
-                marginBottom: "5px",
-                color: mainColors.textBlack,
-                gridColumn: "span 1",
-                textAlign: "left",
-              }}
-            >
-              Fecha de la reserva:
-            </h2>
-            <h2
-              style={{
-                fontFamily: "PoppinsMedium",
-                fontWeight: "800",
-                fontSize: "12px",
-                marginBottom: "5px",
-                color: mainColors.textBlack,
-                gridColumn: "span 1",
-                textAlign: "right",
-              }}
-            >
-              {date}
-            </h2>
-
-            <h2
-              style={{
-                fontFamily: "PoppinsMedium",
-                fontWeight: "300",
-                fontSize: "12px",
-                marginBottom: "5px",
-                color: mainColors.textBlack,
-                gridColumn: "span 1",
-                textAlign: "left",
-              }}
-            >
-              Hora de la reserva:
-            </h2>
-            <h2
-              style={{
-                fontFamily: "PoppinsMedium",
-                fontWeight: "800",
-                fontSize: "12px",
-                marginBottom: "5px",
-                color: mainColors.textBlack,
-                gridColumn: "span 1",
-                textAlign: "right",
-              }}
-            >
-              {time}
-            </h2>
-
-            <h2
-              style={{
-                fontFamily: "PoppinsMedium",
-                fontWeight: "300",
-                fontSize: "12px",
-                marginBottom: "5px",
-                color: mainColors.textBlack,
-                gridColumn: "span 1",
-                textAlign: "left",
-              }}
-            >
-              Sucursal:
-            </h2>
-            <h2
-              style={{
-                fontFamily: "PoppinsMedium",
-                fontWeight: "800",
-                fontSize: "12px",
-                marginBottom: "5px",
-                color: mainColors.textBlack,
-                gridColumn: "span 1",
-                textAlign: "right",
-              }}
-            >
-              Calle No C
-            </h2>
-
-            <h2
-              style={{
-                fontFamily: "PoppinsMedium",
-                fontWeight: "300",
-                fontSize: "12px",
-                marginBottom: "5px",
-                color: mainColors.textBlack,
-                gridColumn: "span 1",
-                textAlign: "left",
-              }}
-            >
-              Código de la reserva:
-            </h2>
-            <h2
-              style={{
-                fontFamily: "PoppinsMedium",
-                fontWeight: "800",
-                fontSize: "12px",
-                marginBottom: "5px",
-                color: mainColors.textBlack,
-                gridColumn: "span 1",
-                textAlign: "right",
-              }}
-            >
-              {reserveId}
-            </h2>
-          </LayoutGrid>
-          <h2
+          <div
             style={{
-              fontFamily: "PoppinsMedium",
-              fontWeight: "800",
-              fontSize: "16px",
-              marginBottom: "20px",
-              color: mainColors.textBlack,
+              boxShadow: "1px 1px 6px rgba(0,0,0,.2)",
+              margin: "0",
+              padding: "20px 0px 0px 0px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              width: "90%",
             }}
           >
-            Te esperamos!
-          </h2>
-          <Button
-            text={"Ver mis reservas"}
-            click={() => navigate(`/reservations/${userId}`)}
-          />
+            <LayoutGrid>
+              <h2
+                style={{
+                  fontFamily: "PoppinsMedium",
+                  fontWeight: "300",
+                  fontSize: "12px",
+                  marginBottom: "5px",
+                  color: mainColors.textBlack,
+                  gridColumn: "span 1",
+                  textAlign: "left",
+                }}
+              >
+                Fecha de la reserva:
+              </h2>
+              <h2
+                style={{
+                  fontFamily: "PoppinsMedium",
+                  fontWeight: "800",
+                  fontSize: "12px",
+                  marginBottom: "5px",
+                  color: mainColors.textBlack,
+                  gridColumn: "span 1",
+                  textAlign: "right",
+                }}
+              >
+                {date}
+              </h2>
+
+              <h2
+                style={{
+                  fontFamily: "PoppinsMedium",
+                  fontWeight: "300",
+                  fontSize: "12px",
+                  marginBottom: "5px",
+                  color: mainColors.textBlack,
+                  gridColumn: "span 1",
+                  textAlign: "left",
+                }}
+              >
+                Hora de la reserva:
+              </h2>
+              <h2
+                style={{
+                  fontFamily: "PoppinsMedium",
+                  fontWeight: "800",
+                  fontSize: "12px",
+                  marginBottom: "5px",
+                  color: mainColors.textBlack,
+                  gridColumn: "span 1",
+                  textAlign: "right",
+                }}
+              >
+                {time}
+              </h2>
+
+              <h2
+                style={{
+                  fontFamily: "PoppinsMedium",
+                  fontWeight: "300",
+                  fontSize: "12px",
+                  marginBottom: "5px",
+                  color: mainColors.textBlack,
+                  gridColumn: "span 1",
+                  textAlign: "left",
+                }}
+              >
+                Cantidad de personas:
+              </h2>
+              <h2
+                style={{
+                  fontFamily: "PoppinsMedium",
+                  fontWeight: "800",
+                  fontSize: "12px",
+                  marginBottom: "5px",
+                  color: mainColors.textBlack,
+                  gridColumn: "span 1",
+                  textAlign: "right",
+                }}
+              >
+                {people}
+              </h2>
+
+              <h2
+                style={{
+                  fontFamily: "PoppinsMedium",
+                  fontWeight: "300",
+                  fontSize: "12px",
+                  marginBottom: "5px",
+                  color: mainColors.textBlack,
+                  gridColumn: "span 1",
+                  textAlign: "left",
+                }}
+              >
+                Código de la reserva:
+              </h2>
+              <h2
+                style={{
+                  fontFamily: "PoppinsMedium",
+                  fontWeight: "800",
+                  fontSize: "12px",
+                  marginBottom: "5px",
+                  color: mainColors.textBlack,
+                  gridColumn: "span 1",
+                  textAlign: "right",
+                }}
+              >
+                {reserveId}
+              </h2>
+            </LayoutGrid>
+            <h2
+              style={{
+                fontFamily: "PoppinsMedium",
+                fontWeight: "400",
+                fontSize: "16px",
+                marginBottom: "20px",
+                color: mainColors.textBlack,
+              }}
+            >
+              Te esperamos!
+            </h2>
+          </div>
+          <LayoutGrid>
+            <Button
+              text={"Ver mis reservas"}
+              click={() => navigate(`/reservations/${userId}`)}
+            />
+          </LayoutGrid>
         </>
       )}
     </ViewDefault>

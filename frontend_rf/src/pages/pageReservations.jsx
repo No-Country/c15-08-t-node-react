@@ -7,9 +7,7 @@ import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
 import ViewDefault from "../components/ViewDefault/ViewDefault";
 import moment from "moment";
-import LayoutGrid, {
-  LayoutGridReservations,
-} from "../components/LayoutGrid/LayoutGrid";
+import LayoutGrid from "../components/LayoutGrid/LayoutGrid";
 function PageReservations() {
   const { userId } = useParams();
   const [reserves, setReserves] = useState([]);
@@ -27,7 +25,6 @@ function PageReservations() {
       }
     )
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
           setLoading(false);
           return response.json();
@@ -38,7 +35,6 @@ function PageReservations() {
         }
       })
       .then((reserves) => {
-        console.log(reserves);
         setReserves(reserves);
       })
       .catch((error) => console.log(error));
@@ -57,7 +53,6 @@ function PageReservations() {
         }
       )
         .then((response) => {
-          console.log(response);
           if (response.status === 200) {
             setLoading(false);
             return response.json();
@@ -68,7 +63,6 @@ function PageReservations() {
           }
         })
         .then((reserves) => {
-          console.log(reserves);
           setReserves(reserves);
         })
         .catch((error) => console.log(error));

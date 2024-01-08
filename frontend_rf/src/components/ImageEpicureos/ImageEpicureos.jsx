@@ -29,5 +29,37 @@ function ImageEpicureos({ size = "0" }) {
     </Link>
   );
 }
+export function ImageEpicureosSombra({ size = "0" }) {
+  return (
+    <Link
+      to={"/home"}
+      style={{
+        textDecoration: "none",
+        color: mainColors.textBlack,
+      }}
+    >
+      {size > "0" && (
+        <img
+          style={{ width: size, padding: "15px 0px", marginLeft: "-30px" }}
+          src={logochico}
+          alt="Epicureos"
+        ></img>
+      )}
+      {size === "0" && (
+        <img
+          style={{
+            paddingTop: "10vh",
+            filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, .25))",
+          }}
+          src={LogoEpicureos}
+          alt="Epicureos"
+        ></img>
+      )}
+    </Link>
+  );
+}
 
 export default ImageEpicureos;
+
+
+

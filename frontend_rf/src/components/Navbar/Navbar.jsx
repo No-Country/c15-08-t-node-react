@@ -16,22 +16,13 @@ function Navbar({ userLoggedIn, setUserLoggedIn }) {
     navigate("/home");
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("user")) {
-      setUserLoggedIn(true);
-    }
-  }, []);
 
   useEffect(() => {
-    console.log(localStorage.getItem("user"));
     if (userLoggedIn) {
       setName(
         JSON.parse(localStorage.getItem("user"))?.firstname?.toLowerCase()
       );
       setUserId(JSON.parse(localStorage.getItem("user"))?.id);
-    } else {
-      setName("");
-      setUserId(undefined);
     }
   }, [userLoggedIn]);
 

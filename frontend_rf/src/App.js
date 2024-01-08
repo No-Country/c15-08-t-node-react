@@ -2,6 +2,9 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
+import FooterHome from "../src/components/Footer/FooterHome";
+import Navbar from "../src/components/Navbar/Navbar";
+
 import PageLogin from "../src/pages/pageLogin";
 import PageHome from "../src/pages/pageHome";
 import PageForgot from "../src/pages/pageForgot";
@@ -10,7 +13,7 @@ import PageReserve from "../src/pages/pageReserve";
 import PageOTPValidation from "../src/pages/pageOTPValidation";
 import PageSignup from "../src/pages/pageSignup";
 import PageConfirmation from "../src/pages/pageConfirmation";
-import Navbar from "../src/components/Navbar/Navbar";
+
 import PageProfile from "../src/pages/pageProfile";
 
 function App() {
@@ -61,6 +64,7 @@ function App() {
           }
         />
       </Routes>
+      <FooterHome />
     </BrowserRouter>
   );
 }

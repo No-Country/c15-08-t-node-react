@@ -36,10 +36,7 @@ function PageLogin({ setUserLogged }) {
     })
       .then((response) => {
         if (response.status === 200) {
-          setUserLogged(true);
-          navigate("/home");
           setLoading(false);
-
           return response.json();
         } else if (response.status === 400) {
           setMail("");
@@ -51,12 +48,12 @@ function PageLogin({ setUserLogged }) {
         }
       })
       .then((user) => {
+        setUserLogged(true);
         localStorage.setItem("user", JSON.stringify(user.session));
         localStorage.setItem("email", mail.toLowerCase());
         setMail("");
         setPass("");
-        console.log(user);
-        console.log(user.session);
+        navigate("/home");
       })
       .catch((error) => console.log(error));
   };

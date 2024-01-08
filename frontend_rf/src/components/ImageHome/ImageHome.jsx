@@ -1,11 +1,21 @@
 import React from "react";
 import LogoEpicureos from "../../assets/images/logoEpicureos.png";
-import imagenRestaurant from "../../assets/images/imagenRestaurant.png";
+import ImagenRest1 from "../../assets/images/ImagenRest1.png";
+import ImagenRest2 from "../../assets/images/ImagenRest2.png";
+import ImagenRest3 from "../../assets/images/ImagenRest3.png";
+import LocationIcon from "../../assets/images/LocationIcon.png";
 import Button from "../Button/Button";
-import { Link } from "react-router-dom";
 import { mainColors } from "../../styles/mainColors";
 import { useNavigate } from "react-router-dom";
+import { ImageEpicureosSombra } from "../../components/ImageEpicureos/ImageEpicureos";
 
+import HomeInfo from "../../components/HomeInfo/HomeInfo";
+import LayoutGrid from "../../components/LayoutGrid/LayoutGrid";
+
+const textShadow = {
+  filter: "drop-shadow(1px 1px 15px #000000)",
+  color: "#fff",
+};
 
 function ImageHome({ size = "0" }) {
   let navigate = useNavigate();
@@ -14,138 +24,81 @@ function ImageHome({ size = "0" }) {
       style={{
         display: "flex",
         height: "100vh",
-        width: "100%",
+        width: "100vw",
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "center",
-        gap: "10px",
+        gap: "15px",
       }}
     >
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          zIndex: -1,
-          position: "absolute",
-          backgroundColor: mainColors.backBrownOpaque2,
-        }}
-      ></div>
-      <div style={{ paddingTop: "25px" }}></div>
       <img
-        src={imagenRestaurant}
-        alt="imagenRestaurant"
-        style={{
-          width: "100%",
-          height: "100%",
-          zIndex: -2,
-          objectFit: "cover",
-          position: "absolute",
-        }}
+        style={{ height: "100vh", position: "absolute", zIndex: "-1" }}
+        src={ImagenRest1}
+        alt={"Res"}
       />
-      <img src={LogoEpicureos} alt="Epicureos" />
-
-      <h2
-        style={{
-          fontFamily: "PoppinsMedium",
-          fontWeight: "400",
-          fontSize: "20px",
-          marginBottom: "0px",
-          color: mainColors.textWhite,
-          textAlign: "left",
-        }}
-      >
-        MERECEDORES DE PLACER
-      </h2>
-      <h3
-        style={{
-          fontFamily: "PoppinsMedium",
-          fontWeight: "400",
-          fontSize: "11px",
-          marginBottom: "0px",
-          color: mainColors.textWhite,
-        }}
-      >
-        Deleitá tu paladar con nuestra propuesta gastronómica
-      </h3>
-      <h4
-        style={{
-          fontFamily: "PoppinsMedium",
-          fontWeight: "400",
-          fontSize: "10px",
-          marginBottom: "0px",
-          color: mainColors.textWhite,
-        }}
-      >
-        Lennox 2308, Funes
-      </h4>
-
-      <h5
-        style={{
-          fontFamily: "PoppinsMedium",
-          fontWeight: "400",
-          fontSize: "15px",
-          marginBottom: "0px",
-          color: mainColors.textWhite,
-        }}
-      >
-        NUESTROS HORARIOS:
-      </h5>
-
-      <h6
-        style={{
-          fontFamily: "PoppinsMedium",
-          fontWeight: "400",
-          fontSize: "11px",
-          marginBottom: "0px",
-          color: mainColors.textWhite,
-        }}
-      >
-        Martes a Jueves: De 12 a 16 y de 19 a 00:30hs
-      </h6>
-
-      <h7
-        style={{
-          fontFamily: "PoppinsMedium",
-          fontWeight: "400",
-          fontSize: "11px",
-          marginBottom: "0px",
-          color: mainColors.textWhite,
-        }}
-      >
-        Viernes y Sábados: De 12 a 16 y de 19 a 01:30hs
-      </h7>
-      <h8
-        style={{
-          fontFamily: "PoppinsMedium",
-          fontWeight: "400",
-          fontSize: "11px",
-          marginBottom: "0px",
-          color: mainColors.textWhite,
-          alignItems: "left",
-        }}
-      >
-        Domingos: De 12 a 16 y de 19 a 00:30hs
-      </h8>
-      <h9
-        style={{
-          fontFamily: "PoppinsMedium",
-          fontWeight: "400",
-          fontSize: "11px",
-          marginBottom: "0px",
-          color: mainColors.textWhite,
-        }}
-      >
-        Lunes: Cerrado
-      </h9>
-
-      <Button
-        loading={false}
-        text={"Reserva"}
-        click={() => navigate("/reserve")}
-        style={{
-          width: "50px",
-        }}
-      />
+      <ImageEpicureosSombra />
+      <LayoutGrid>
+        <div style={{ margin: "6vh 0" }}></div>
+        <h2
+          style={{
+            ...textShadow,
+            fontFamily: "PoppinsMedium",
+            fontSize: "20px",
+            gridColumn: "span 2",
+            letterSpacing: "1.5px",
+            textAlign: "center",
+            marginBottom: "-8px",
+          }}
+        >
+          MERECEDORES DE PLACER
+        </h2>
+        <h4
+          style={{
+            ...textShadow,
+            fontFamily: "PoppinsThin",
+            fontSize: "11px",
+            gridColumn: "span 2",
+            textAlign: "center",
+            fontWeight: "200",
+            marginTop: "0",
+            marginBottom: "-8px",
+          }}
+        >
+          Deleitá tu paladar con nuestra propuesta gastronómica
+        </h4>
+        <h4
+          style={{
+            ...textShadow,
+            fontFamily: "PoppinsThin",
+            fontSize: "10px",
+            gridColumn: "span 2",
+            textAlign: "center",
+            fontWeight: "200",
+            marginTop: "-12px",
+          }}
+        >
+          <span
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <img
+              style={{
+                marginTop: "-10px",
+                paddingTop: "10px",
+                marginRight: "-6px",
+              }}
+              src={LocationIcon}
+              alt="Ubicacion"
+            />
+            Lennox 2308, Funes
+          </span>
+        </h4>
+        <HomeInfo />
+        <Button text={"Reservar"} click={() => navigate("/reserve")} />
+      </LayoutGrid>
     </div>
   );
 }
