@@ -32,13 +32,18 @@ function ImageHome({ size = "0" }) {
       }}
     >
       <img
-        style={{ height: "100vh", position: "absolute", zIndex: "-1" }}
+        style={{
+          width: "100vw",
+          position: "absolute",
+          zIndex: "-1",
+          objectFit: "cover",
+        }}
         src={ImagenRest1}
         alt={"Res"}
       />
       <ImageEpicureosSombra />
       <LayoutGrid>
-        <div style={{ margin: "6vh 0" }}></div>
+        <div style={{ margin: "3vh 0" }}></div>
         <h2
           style={{
             ...textShadow,

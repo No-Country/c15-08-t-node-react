@@ -8,9 +8,10 @@ const FooterHome = () => {
   return (
     <footer
       style={{
+        marginTop: "-5vh",
         width: "100vw",
         backgroundColor: "#DBD2C9",
-        height: "14vh",
+        height: "17vh",
         display: "flex",
         alignContent: "center",
         justifyContent: "center",
@@ -45,7 +46,7 @@ const FooterHome = () => {
             <h4
               style={{
                 fontFamily: "PoppinsMedium",
-                fontSize: "13px",
+                fontSize: "11px",
                 fontWeight: "300",
                 margin: "5px",
               }}
@@ -55,7 +56,7 @@ const FooterHome = () => {
             <h4
               style={{
                 fontFamily: "PoppinsMedium",
-                fontSize: "13px",
+                fontSize: "11px",
                 fontWeight: "300",
                 margin: "5px",
               }}
@@ -80,7 +81,7 @@ const FooterHome = () => {
               flexDirection: "column",
               paddingLeft: "35px",
               fontFamily: "PoppinsMedium",
-              fontSize: "13px",
+              fontSize: "11px",
               fontWeight: "300",
             }}
             className="contact"
