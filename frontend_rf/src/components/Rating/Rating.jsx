@@ -3,17 +3,24 @@ import { IoStar } from "react-icons/io5";
 import "./rating.css";
 import Button from "../../components/Button/Button";
 import LayoutGrid from "../../components/LayoutGrid/LayoutGrid";
-function Rating({ rating, setRating, openModal, setOpenModal }) {
+function Rating({
+  rating,
+  setRating,
+  openModal,
+  setOpenModal,
+  comment,
+  setComment,
+}) {
   const [hover, setHover] = useState(null);
-
   const handleRating = () => {
     if (rating) setOpenModal(false);
   };
+
   return (
     <div
       style={{
         width: "84vw",
-        height: "155px",
+        height: "230px",
         backgroundColor: "rgba(246, 246, 246, 1)",
         position: "fixed",
         left: "0",
@@ -35,7 +42,7 @@ function Rating({ rating, setRating, openModal, setOpenModal }) {
           color: "rgba(37, 37, 37, 1)",
           margin: "5px",
           fontFamily: "PoppinsMedium",
-          fontSize: "12px",
+          fontSize: "13px",
           letterSpacing: "1.2px",
           marginTop: "10px",
           marginBottom: "12px",
@@ -54,7 +61,7 @@ function Rating({ rating, setRating, openModal, setOpenModal }) {
                 type="radio"
                 name="rating"
                 value={current}
-                onClick={() => setRating(current)}
+                onClick={() => setRating(current.toString())}
               />
               <IoStar
                 className="star"
@@ -72,6 +79,22 @@ function Rating({ rating, setRating, openModal, setOpenModal }) {
         })}
       </div>
       <LayoutGrid>
+        <textarea
+          value={comment}
+          onChange={(event) => setComment(event.target.value)}
+          placeholder="Comentarios..."
+          style={{
+            color: "rgba(37, 37, 37, 1)",
+            fontFamily: "PoppinsMedium",
+            fontSize: "13px",
+            marginBottom: "-6px",
+            marginTop: "10px",
+            height: "60px",
+            padding: "3px 6px",
+            fontWeight: "300",
+            gridColumn: "span 2",
+          }}
+        />
         <Button text={"Listo"} click={handleRating} />
       </LayoutGrid>
     </div>

@@ -19,14 +19,17 @@ import PageProfile from "../src/pages/pageProfile";
 
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState("");
+  const [comment, setComment] = useState("");
   const [openModal, setOpenModal] = useState(true);
   useEffect(() => {
     if (localStorage.getItem("user")) {
       setUserLoggedIn(true);
     }
   }, []);
-
+  useEffect(() => {
+    console.log(comment, rating);
+  }, [comment, rating, setComment, setOpenModal]);
   return (
     <BrowserRouter>
       <Navbar setUserLoggedIn={setUserLoggedIn} userLoggedIn={userLoggedIn} />
@@ -36,6 +39,8 @@ function App() {
           setOpenModal={setOpenModal}
           setRating={setRating}
           rating={rating}
+          setComment={setComment}
+          comment={comment}
         />
       )}
 
