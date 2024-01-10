@@ -85,12 +85,12 @@ function BoxReserve({
                 gridColumn: "span 1",
                 alignSelf: "flex-end",
                 alignContent: "flex-end",
-                marginBottom: "-36px",
+                marginBottom: "-18px",
 
                 textAlign: "end",
               }}
             >
-              <IoClose size={46} color="rgba(58, 37, 33, .4)" />
+              <IoClose size={30} color={mainColors.textDisabled} />
             </div>
           ) : null}
           <h2

@@ -4,7 +4,7 @@ const container = {
   display: "flex",
   flexDirection: "column",
   height: "auto",
-  minHeight: "90vh",
+  minHeight: "75vh",
   width: "100%",
   justifyContent: "flex-start",
   alignItems: "center",

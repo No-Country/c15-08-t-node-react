@@ -4,7 +4,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 0px 60px;
-  height: 10vh;
+  height: 64px;
   background-color: rgba(219, 210, 201, 1);
   position: -webkit-sticky;
   position: -moz-sticky;
@@ -13,6 +13,7 @@ nav {
   z-index: 3;
   position: sticky;
   top: 0;
+  filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, .6)),
 }
 ul {
   display: flex;
@@ -49,6 +50,7 @@ nav .menu {
   justify-content: space-between;
   width: 100%;
   z-index: 2;
+  filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, .6)),
 }
 
 h3 {
@@ -72,7 +74,7 @@ nav .menu span {
 @media (max-width: 480px) {
   nav .menu {
     display: flex;
-    top: 2.5vh;
+    top: 10px;
     right: -82vw;
     position: absolute;
     z-index: 2;
@@ -89,7 +91,7 @@ nav ul.open {
     flex-direction: column;
     width: 100%;
     position: absolute;
-    top: 7vh;
+    top: 40px;
     right: 0;
     background-color: rgba(219, 210, 201, 1);
     padding: 20px 0;
@@ -106,11 +108,16 @@ nav ul li {
 }
 
 ion-icon {
-  font-size: 48px;
+  padding-right: 10px;
+  font-size: 42px;
   color: rgba(58, 37, 33, 1);
 }
 
 ion-icon:hover, ion-icon:active {
   color: rgba(107, 89, 86, 1);
 
+}
+
+ImageEpicureos {
+  margin-top: 20px;
 }

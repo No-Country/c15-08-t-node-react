@@ -3,6 +3,7 @@ import LogoEpicureos from "../../assets/images/logoEpicureos.png";
 import ImagenRest1 from "../../assets/images/ImagenRest1.png";
 import ImagenRest2 from "../../assets/images/ImagenRest2.png";
 import ImagenRest3 from "../../assets/images/ImagenRest3.png";
+import imagenMesa from "../../assets/images/imagenMesa.png";
 import LocationIcon from "../../assets/images/LocationIcon.png";
 import Button from "../Button/Button";
 import { mainColors } from "../../styles/mainColors";
@@ -23,7 +24,7 @@ function ImageHome({ size = "0" }) {
     <div
       style={{
         display: "flex",
-        height: "100vh",
+        height: "94vh",
         width: "100vw",
         flexDirection: "column",
         justifyContent: "flex-start",
@@ -33,17 +34,17 @@ function ImageHome({ size = "0" }) {
     >
       <img
         style={{
-          width: "100vw",
+          maxWidth: "100%",
           position: "absolute",
           zIndex: "-1",
-          objectFit: "cover",
+          objectFit: "contain",
         }}
         src={ImagenRest1}
         alt={"Res"}
       />
       <ImageEpicureosSombra />
       <LayoutGrid>
-        <div style={{ margin: "3vh 0" }}></div>
+        <div style={{ margin: "4.4vh 0" }}></div>
         <h2
           style={{
             ...textShadow,

@@ -14,14 +14,14 @@ function ImageEpicureos({ size = "0" }) {
     >
       {size > "0" && (
         <img
-          style={{ width: size, padding: "15px 0px", marginLeft: "-30px" }}
+          style={{ width: size, marginLeft: "-30px" }}
           src={logochico}
           alt="Epicureos"
         ></img>
       )}
       {size === "0" && (
         <img
-          style={{ paddingTop: "10vh" }}
+          style={{ paddingTop: "4vh", width: "110px" }}
           src={LogoEpicureos}
           alt="Epicureos"
         ></img>
@@ -48,7 +48,7 @@ export function ImageEpicureosSombra({ size = "0" }) {
       {size === "0" && (
         <img
           style={{
-            paddingTop: "10vh",
+            paddingTop: "4vh",
             filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, .25))",
           }}
           src={LogoEpicureos}

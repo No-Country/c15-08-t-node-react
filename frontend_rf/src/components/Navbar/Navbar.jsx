@@ -16,7 +16,6 @@ function Navbar({ userLoggedIn, setUserLoggedIn }) {
     navigate("/home");
   };
 
-
   useEffect(() => {
     if (userLoggedIn) {
       setName(
@@ -32,7 +31,7 @@ function Navbar({ userLoggedIn, setUserLoggedIn }) {
         setOpenMenu(false);
       }}
     >
-      <ImageEpicureos size="max(90%, 50px)" />
+      <ImageEpicureos size="max(90%, 45px)" />
       <div className="menu" onClick={() => setOpenMenu(!openMenu)}>
         <ion-icon name="menu-outline"></ion-icon>
       </div>
