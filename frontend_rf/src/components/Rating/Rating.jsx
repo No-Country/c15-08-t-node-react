@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IoStar } from "react-icons/io5";
 import "./rating.css";
 import Button from "../../components/Button/Button";
-import LayoutGrid from "components/LayoutGrid/LayoutGrid";
+import LayoutGrid from "../../components/LayoutGrid/LayoutGrid";
 function Rating({ rating, setRating, openModal, setOpenModal }) {
   const [hover, setHover] = useState(null);
 
