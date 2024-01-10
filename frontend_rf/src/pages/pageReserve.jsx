@@ -16,10 +16,10 @@ import {
 function PageReserve({ userLoggedIn }) {
   let navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [date, setDate] = useState();
-  const [time, setTime] = useState();
-  const [time2, setTime2] = useState();
-  const [people, setPeople] = useState();
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [time2, setTime2] = useState("");
+  const [people, setPeople] = useState("");
   const [people2, setPeople2] = useState();
   const [optionsDate, setOptionsDate] = useState();
   const [optionsTime, setOptionsTime] = useState();

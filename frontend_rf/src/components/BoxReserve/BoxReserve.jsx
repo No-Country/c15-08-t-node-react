@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { mainColors } from "../../styles/mainColors";
 import { LayoutGridReserve } from "../../components/LayoutGrid/LayoutGrid";
-import iconcancel from "../../assets/images/iconcancel.png";
+
+import { IoClose } from "react-icons/io5";
 import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
 
@@ -84,16 +85,12 @@ function BoxReserve({
                 gridColumn: "span 1",
                 alignSelf: "flex-end",
                 alignContent: "flex-end",
-                marginBottom: "-34px",
-                marginTop: "-10px",
+                marginBottom: "-36px",
+
                 textAlign: "end",
               }}
             >
-              <img
-                style={{ width: 36, padding: "15px 0px" }}
-                src={iconcancel}
-                alt="Cancelar"
-              ></img>
+              <IoClose size={46} color="rgba(58, 37, 33, .4)" />
             </div>
           ) : null}
           <h2

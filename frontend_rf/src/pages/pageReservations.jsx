@@ -113,7 +113,7 @@ function PageReservations() {
           color={mainColors.buttonColor}
           style={{ textAlign: "center", marginTop: "2vh" }}
         />
-      ) : reserves === undefined ? (
+      ) : reserves.length === 0 ? (
         <h2
           style={{
             marginTop: "2vh",
@@ -171,7 +171,7 @@ function PageReservations() {
           color={mainColors.buttonColor}
           style={{ textAlign: "center", marginTop: "2vh" }}
         />
-      ) : reserves === undefined ? (
+      ) : reserves.length == 0 ? (
         <h2
           style={{
             marginTop: "2vh",
@@ -189,7 +189,6 @@ function PageReservations() {
           .sort((a, b) => (a.date > b.date ? -1 : 1))
           .map((reserve) => {
             const date = reserve.date + " " + reserve.schedule;
-
             if (moment(date).isBefore() || reserve.status !== "reserved") {
               return (
                 <BoxReserve
