@@ -9,7 +9,7 @@ const container = {
   justifyContent: "flex-start",
   alignItems: "center",
   gap: "15px",
-  paddingBottom: "30px",
+  paddingBottom: "8vh",
   backgroundColor: mainColors.backWhite,
 };
 

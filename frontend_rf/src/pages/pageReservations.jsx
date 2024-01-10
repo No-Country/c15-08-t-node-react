@@ -8,6 +8,7 @@ import "react-activity/dist/library.css";
 import ViewDefault from "../components/ViewDefault/ViewDefault";
 import moment from "moment";
 import LayoutGrid from "../components/LayoutGrid/LayoutGrid";
+
 function PageReservations() {
   const { userId } = useParams();
   const [reserves, setReserves] = useState([]);
@@ -88,6 +89,7 @@ function PageReservations() {
         >
           MIS RESERVAS
         </h2>
+
         <h2
           style={{
             paddingLeft: "2px",

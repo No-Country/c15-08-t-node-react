@@ -15,9 +15,12 @@ import PageSignup from "../src/pages/pageSignup";
 import PageConfirmation from "../src/pages/pageConfirmation";
 
 import PageProfile from "../src/pages/pageProfile";
+import Rating from "components/Rating/Rating";
 
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [openModal, setOpenModal] = useState(true);
   useEffect(() => {
     if (localStorage.getItem("user")) {
       setUserLoggedIn(true);
@@ -27,6 +30,15 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar setUserLoggedIn={setUserLoggedIn} userLoggedIn={userLoggedIn} />
+      {openModal && (
+        <Rating
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          setRating={setRating}
+          rating={rating}
+        />
+      )}
+
       <Routes>
         {
           // Default route
