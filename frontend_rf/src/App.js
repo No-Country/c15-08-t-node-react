@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import FooterHome from "../src/components/Footer/FooterHome";
 import Navbar from "../src/components/Navbar/Navbar";
+import Rating from "../src/components/Rating/Rating";
 
 import PageLogin from "../src/pages/pageLogin";
 import PageHome from "../src/pages/pageHome";
@@ -13,9 +14,8 @@ import PageReserve from "../src/pages/pageReserve";
 import PageOTPValidation from "../src/pages/pageOTPValidation";
 import PageSignup from "../src/pages/pageSignup";
 import PageConfirmation from "../src/pages/pageConfirmation";
-
 import PageProfile from "../src/pages/pageProfile";
-import Rating from "components/Rating/Rating";
+
 
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);

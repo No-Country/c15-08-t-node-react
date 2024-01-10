@@ -13,7 +13,7 @@ function Rating({ rating, setRating, openModal, setOpenModal }) {
     <div
       style={{
         width: "84vw",
-        height: "21vh",
+        height: "155px",
         backgroundColor: "rgba(246, 246, 246, 1)",
         position: "fixed",
         left: "0",
@@ -37,8 +37,8 @@ function Rating({ rating, setRating, openModal, setOpenModal }) {
           fontFamily: "PoppinsMedium",
           fontSize: "12px",
           letterSpacing: "1.2px",
-          marginTop: "5px",
-          marginBottom: "2vh",
+          marginTop: "10px",
+          marginBottom: "12px",
           alignSelf: "center",
           fontWeight: "300",
         }}
