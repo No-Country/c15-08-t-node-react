@@ -1,7 +1,7 @@
-import ViewDefault from "components/ViewDefault/ViewDefault";
+import ViewDefault from "../components/ViewDefault/ViewDefault";
 import React from "react";
 import { mainColors } from "../styles/mainColors";
-import LayoutGrid from "components/LayoutGrid/LayoutGrid";
+import LayoutGrid from "../components/LayoutGrid/LayoutGrid";
 
 function PageMenu() {
   return (
