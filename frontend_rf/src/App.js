@@ -14,17 +14,68 @@ import PageReserve from "../src/pages/pageReserve";
 import PageOTPValidation from "../src/pages/pageOTPValidation";
 import PageSignup from "../src/pages/pageSignup";
 import PageConfirmation from "../src/pages/pageConfirmation";
+import PageMenu from "../src/pages/pageMenu";
 import PageProfile from "../src/pages/pageProfile";
-
 
 function App() {
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [rating, setRating] = useState("");
   const [comment, setComment] = useState("");
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [bookingId, setBookingId] = useState("");
+  const [bookingDate, setBookingDate] = useState("");
+
+  const handleRating = async () => {
+    if (rating) {
+      setLoading(true);
+      await fetch(
+        `https://restaurant-c2gx.onrender.com/api/v1/qualification/createQualify`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            stars: rating,
+            comment: comment,
+            bookingId: bookingId,
+          }),
+        }
+      ).then(() => {
+        setLoading(false);
+        setOpenModal(false);
+      });
+    }
+  };
   useEffect(() => {
-    if (localStorage.getItem("user")) {
+    const handleQualify = async () => {
+      await fetch(
+        `https://restaurant-c2gx.onrender.com/api/v1/qualification/toQualify/${
+          JSON.parse(localStorage.getItem("user"))?.id
+        }`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => {
+          if (response.status === 200) {
+            setOpenModal(true);
+            return response.json();
+          }
+        })
+        .then((data) => {
+          setBookingId(data.id);
+          setBookingDate(data.date);
+        })
+        .catch((error) => console.log(error));
+    };
+    if (JSON.parse(localStorage.getItem("user"))?.firstname) {
       setUserLoggedIn(true);
+      handleQualify();
     }
   }, []);
   useEffect(() => {
@@ -35,12 +86,15 @@ function App() {
       <Navbar setUserLoggedIn={setUserLoggedIn} userLoggedIn={userLoggedIn} />
       {openModal && (
         <Rating
+          loading={loading}
+          handleRating={handleRating}
           openModal={openModal}
           setOpenModal={setOpenModal}
           setRating={setRating}
           rating={rating}
           setComment={setComment}
           comment={comment}
+          bookingDate={bookingDate}
         />
       )}
 
@@ -70,6 +124,7 @@ function App() {
           element={<PageOTPValidation setUserLogged={setUserLoggedIn} />}
         />
         <Route path="/forgot" element={<PageForgot />} />
+        <Route path="/menu" element={<PageMenu />} />
         <Route path="/confirmation/:reserveId" element={<PageConfirmation />} />
         <Route
           path="/profile/:userId"

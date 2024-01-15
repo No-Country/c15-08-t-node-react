@@ -89,12 +89,8 @@ const FooterHome = () => {
             <Link style={{ margin: "5px" }} to="/reserve">
               Reservar
             </Link>
-            <Link style={{ margin: "5px" }} to="/reserve">
+            <Link style={{ margin: "5px" }} to="/menu">
               Nuestra Carta
-            </Link>
-
-            <Link style={{ margin: "5px" }} to="/reserve">
-              Sobre Nosotros
             </Link>
           </div>
         </div>

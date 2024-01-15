@@ -10,11 +10,11 @@ function Rating({
   setOpenModal,
   comment,
   setComment,
+  handleRating,
+  loading,
+  bookingDate,
 }) {
   const [hover, setHover] = useState(null);
-  const handleRating = () => {
-    if (rating) setOpenModal(false);
-  };
 
   return (
     <div
@@ -45,12 +45,27 @@ function Rating({
           fontSize: "13px",
           letterSpacing: "1.2px",
           marginTop: "10px",
-          marginBottom: "12px",
+          marginBottom: "4px",
           alignSelf: "center",
           fontWeight: "300",
         }}
       >
         Por favor, califica tu última reserva
+      </h2>
+      <h2
+        style={{
+          color: "rgba(37, 37, 37, 1)",
+          margin: "5px",
+          fontFamily: "PoppinsMedium",
+          fontSize: "11px",
+          letterSpacing: "1.1px",
+          marginTop: "0px",
+          marginBottom: "8px",
+          alignSelf: "center",
+          fontWeight: "300",
+        }}
+      >
+        Fecha de reserva: {bookingDate}
       </h2>
       <div style={{ marginBottom: "1vh", display: "flex", gap: "5px" }}>
         {[...Array(5)].map((star, index) => {
@@ -95,7 +110,7 @@ function Rating({
             gridColumn: "span 2",
           }}
         />
-        <Button text={"Listo"} click={handleRating} />
+        <Button loading={loading} text={"Listo"} click={handleRating} />
       </LayoutGrid>
     </div>
   );

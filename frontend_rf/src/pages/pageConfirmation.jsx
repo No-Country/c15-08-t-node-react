@@ -77,12 +77,12 @@ function PageConfirmation() {
             style={{
               boxShadow: "1px 1px 6px rgba(0,0,0,.2)",
               margin: "0",
-              padding: "20px 0px 0px 0px",
+              padding: "20px 30px 0px 30px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              width: "90%",
+              width: "80%",
             }}
           >
             <LayoutGrid>

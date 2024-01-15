@@ -40,7 +40,7 @@ function Navbar({ userLoggedIn, setUserLoggedIn }) {
           <Link to={"/home"}>Inicio</Link>
         </li>
         <li onClick={() => setOpenMenu(false)}>
-          <Link to={"/home"}>Menú</Link>
+          <Link to={"/menu"}>Menú</Link>
         </li>
         {userLoggedIn && localStorage !== null ? (
           <>
