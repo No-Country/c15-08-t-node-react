@@ -326,6 +326,7 @@ const Description = ({ text }) => {
         fontWeight: "300",
         fontSize: "10px",
         textAlign: "left",
+        marginTop: "4px",
         marginBottom: "-15px",
         color: mainColors.textBlack,
         alignSelf: "flex-start",
