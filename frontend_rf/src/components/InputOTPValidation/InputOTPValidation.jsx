@@ -12,8 +12,6 @@ function InputOTPValidation({ setUserLogged }) {
   const [valNumber, setValNumber] = useState("");
   const [error, setError] = useState(false);
   const handleVerification = async () => {
-    console.log(valNumber);
-
     if (valNumber.length < 6) {
       setError(true);
       return;

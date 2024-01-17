@@ -5,7 +5,7 @@ import { LayoutGridReserve } from "../../components/LayoutGrid/LayoutGrid";
 import { IoClose } from "react-icons/io5";
 import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
-
+import moment from "moment";
 function BoxReserve({
   reserveId,
   time,
@@ -19,6 +19,8 @@ function BoxReserve({
   const [stars, setStars] = useState(0);
 
   const handleCancel = async () => {
+    console.log(moment().subtract(1, "day").format("YYYY-MM-DD"));
+    console.log(moment(date, "DD/MM/YYYY").format("YYYY-MM-DD"));
     setLoading(true);
     await fetch(
       `https://restaurant-c2gx.onrender.com/api/v1/booking/deleteReservation/${reserveId}`,
@@ -78,9 +80,11 @@ function BoxReserve({
           >
             {cancel ? "Reserva cancelada" : "Reserva confirmada"}
           </h2>
-          {after ? (
+          {after &&
+          moment().isSameOrBefore(
+            moment(date, "DD/MM/YYYY").subtract(1, "day")
+          ) ? (
             <div
-              onClick={handleCancel}
               style={{
                 gridColumn: "span 1",
                 alignSelf: "flex-end",
@@ -90,7 +94,11 @@ function BoxReserve({
                 textAlign: "end",
               }}
             >
-              <IoClose size={30} color={mainColors.textDisabled} />
+              <IoClose
+                onClick={handleCancel}
+                size={30}
+                color={mainColors.textDisabled}
+              />
             </div>
           ) : null}
           <h2
