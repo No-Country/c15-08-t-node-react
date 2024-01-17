@@ -11,7 +11,6 @@ function InputOTPValidation({ setUserLogged }) {
   const [loading, setLoading] = useState(false);
   const [valNumber, setValNumber] = useState("");
   const [error, setError] = useState(false);
-
   const handleVerification = async () => {
     console.log(valNumber);
 
@@ -33,11 +32,10 @@ function InputOTPValidation({ setUserLogged }) {
       .then((response) => {
         if (response.status === 200) {
           console.log("User Verified");
-          alert("User Verified");
           setLoading(false);
           setError(false);
-          setUserLogged(true);
-          navigate("/home");
+
+          return response.json();
         } else if (response.status === 400) {
           console.log(error);
           setLoading(false);
@@ -47,7 +45,15 @@ function InputOTPValidation({ setUserLogged }) {
           setError(false);
         }
       })
-
+      .then((data) => {
+        localStorage.setItem("user", JSON.stringify(data.session));
+        localStorage.setItem(
+          "email",
+          localStorage.getItem("email").toLowerCase()
+        );
+        setUserLogged(true);
+        navigate(`/profile/${data.session.id}`);
+      })
       .catch((error) => console.log(error));
   };
   return (
