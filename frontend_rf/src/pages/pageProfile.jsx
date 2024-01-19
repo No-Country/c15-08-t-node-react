@@ -31,15 +31,43 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
   const [tel, setTel] = useState(
     JSON.parse(localStorage.getItem("user"))?.phone
   );
-  const [pass, setPass] = useState("0000000000");
+  const [pass, setPass] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!userLoggedIn) {
-      navigate("/signup");
-      setUserLoggedIn(false);
-    }
-  });
+    const handleUserLogged = async () => {
+      if (localStorage.getItem("user") === undefined) {
+        navigate("/signup");
+        setUserLoggedIn(false);
+      } else {
+        setUserLoggedIn(true);
+      }
+    };
+    handleUserLogged();
+  }, [userLoggedIn]);
+
+  useEffect(() => {
+    const getUserData = async () => {
+      await fetch(
+        `https://restaurant-c2gx.onrender.com/api/v1/user/profile/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => response.json())
+        .then((userData) => {
+          setEmail(userData.email);
+          setFirstName(userData.firstname);
+          setLastName(userData.lastname);
+          setPass(userData.password);
+          setTel(userData.phone);
+        });
+    };
+    getUserData();
+  }, []);
 
   const handleChanges = async () => {
     setLoading(true);
@@ -54,11 +82,12 @@ function PageProfile({ userLoggedIn, setUserLoggedIn }) {
         firstname: firstName,
         phone: tel,
         email: email,
+        password: pass,
       }),
     })
       .then((response) => {
         if (response.status === 200) {
-          alert("Se actualizaron tus datos");
+          alert("Se actualizaron tus datos correctamente.");
           setLoading(false);
         } else if (response.status === 400) {
           setLoading(false);

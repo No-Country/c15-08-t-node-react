@@ -78,9 +78,6 @@ function App() {
       handleQualify();
     }
   }, []);
-  useEffect(() => {
-    console.log(comment, rating);
-  }, [comment, rating, setComment, setOpenModal]);
   return (
     <BrowserRouter>
       <Navbar setUserLoggedIn={setUserLoggedIn} userLoggedIn={userLoggedIn} />
