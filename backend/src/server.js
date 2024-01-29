@@ -16,9 +16,7 @@ server.use(cors())
 server.use(express.json())
 server.use(express.urlencoded({ extended: true }))
 
-server.use('/api/v1', require('./routes/api.routes'))
-
-cron.schedule('15 */1 * * *', async () => {
+cron.schedule('0 23 */1 * *', async () => {
       await createAvailabilityDates();
 
 }, {
@@ -27,13 +25,16 @@ cron.schedule('15 */1 * * *', async () => {
  }
 );
 
-cron.schedule('15 */1 * * *', async () => {
+cron.schedule('0 23 */1 * *', async () => {
    await disablePreviousDates()
 }, {
    scheduled: true,
    timezone: "America/Sao_Paulo"
  }
 );
+
+server.use('/api/v1', require('./routes/api.routes'))
+
 
 module.exports = server
 
