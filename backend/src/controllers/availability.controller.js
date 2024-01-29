@@ -43,7 +43,6 @@ const createAvailabilityDates = async (req, res) => {
     } catch ({ message }) {
         res.status(400).json({ message })        
     }
-
 }
 
 //super user o admin

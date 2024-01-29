@@ -16,22 +16,32 @@ server.use(cors())
 server.use(express.json())
 server.use(express.urlencoded({ extended: true }))
 
-cron.schedule('0 23 */1 * *', async () => {
-      await createAvailabilityDates();
-
+cron.schedule('0 23 * * *', async () => {
+  console.log('Ejecutando tarea cron createAvailabilityDates');
+  try {
+    await createAvailabilityDates();
+    console.log('Tarea cron createAvailabilityDates completada con éxito');
+  } catch (error) {
+    console.error('Error en la tarea cron createAvailabilityDates:', error);
+  }
 }, {
-   scheduled: true,
-   timezone: "America/Sao_Paulo"
- }
-);
+  scheduled: true,
+  timezone: "America/Sao_Paulo"
+});
 
-cron.schedule('0 23 */1 * *', async () => {
-   await disablePreviousDates()
+cron.schedule('0 23 * * *', async () => {
+  console.log('Ejecutando tarea cron createAvailabilityDates');
+  try {
+    await disablePreviousDates();
+    console.log('Tarea cron createAvailabilityDates completada con éxito');
+  } catch (error) {
+    console.error('Error en la tarea cron createAvailabilityDates:', error);
+  }
 }, {
-   scheduled: true,
-   timezone: "America/Sao_Paulo"
- }
-);
+  scheduled: true,
+  timezone: "America/Sao_Paulo"
+});
+
 
 server.use('/api/v1', require('./routes/api.routes'))
 
