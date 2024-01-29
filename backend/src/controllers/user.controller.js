@@ -2,7 +2,7 @@ const { showProfile, updateUserData } = require('../services/user.service')
 
 const profileController = async (req, res) => {
     try {
-        const user = req.body
+        const user = req.params
         const result = await showProfile(user)
         res.status(200).json(result)
     } catch ({ message }) {

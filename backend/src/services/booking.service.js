@@ -70,7 +70,7 @@ const createReservation = async (data) => {
 
 
     await sendBookingNotification({ email, message })
-    return result.id.slice(-7)
+    return result.id.slice(-7)  
 }
 
 const findReservation = async (data) => {
