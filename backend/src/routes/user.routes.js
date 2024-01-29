@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 //Get user profile
-router.get('/profile', profileController);
+router.get('/profile/:id', profileController);
 
 //Update user data
 router.patch('/user', updateProfileController);
