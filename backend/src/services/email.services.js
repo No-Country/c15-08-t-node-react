@@ -76,19 +76,17 @@ const sendBookingCancelledNotification = async ({ email, message }) => {
     })
 }
 
-const sendBookingCRecoverNotification = async ({ email, message, date, schedule }) => {
+const sendBookingCRecoverNotification = async ({ email, message, minutes, hour, newDay, newMonth, newYear }) => {
 
-   const tomorrow = date.setDate(date.getDate() - 1)
-
-   cron.schedule('0 * * * *', async () => {
+   cron.schedule(`${minutes} ${hour} ${newDay} ${newMonth} ${newYear}`, async () => {
       
     await transporter.sendMail({
           from: `"Epicureos" <${process.env.STM_ACCOUNT}>`,
           to: email,
-          subject: 'Notificación de reserva cancelada',
-          html: `<h3>Le recordamos que su reservación:</h3> 
+          subject: 'Le recordamos que tiene una reserva',
+          html: `<h3>Le recordamos que tiene una reservación:</h3> 
           <h3>ID: ${message.id} de la fecha ${message.date}
-          a las ${message.schedule}, fue cancelada con éxito. </h3>`
+          a las ${message.schedule}, la reserva solo se puede cancelar 24hs antes. </h3>`
       })
    
    }, {
