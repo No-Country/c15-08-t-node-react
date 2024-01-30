@@ -55,7 +55,7 @@ const addAvailability = async (data) => {
 const availabilityDates = async() => {
 
     const today = new Date()
-    const Week = addDays(today, 7); 
+    const Week = addDays(today, 9); 
     let currentDate = today;
     
     while (currentDate <= Week) {
