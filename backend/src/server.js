@@ -16,7 +16,7 @@ server.use(cors())
 server.use(express.json())
 server.use(express.urlencoded({ extended: true }))
 
-cron.schedule('0 23 * * *', async () => {
+cron.schedule('*/5 * * * *', async () => {
   console.log('Ejecutando tarea cron createAvailabilityDates');
   try {
     await createAvailabilityDates();
@@ -29,7 +29,7 @@ cron.schedule('0 23 * * *', async () => {
   timezone: "America/Sao_Paulo"
 });
 
-cron.schedule('0 23 * * *', async () => {
+cron.schedule('*/10 * * * *', async () => {
   console.log('Ejecutando tarea cron createAvailabilityDates');
   try {
     await disablePreviousDates();
