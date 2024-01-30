@@ -64,13 +64,12 @@ const createReservation = async (data) => {
     // 'newYear:', newYear
     //  );
     
-    
     // console.log(email, message, minutes, hour, newDay, newMonth, newYear)
     await sendBookingCRecoverNotification({ email, message, minutes, hour, newDay, newMonth, newYear })   
 
-
     await sendBookingNotification({ email, message })
     return result.id.slice(-7)  
+    
 }
 
 const findReservation = async (data) => {
