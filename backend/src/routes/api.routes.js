@@ -7,7 +7,7 @@ const {
 
 const router =  Router()
 
-cron.schedule('*/1 * * * *', async () => {
+cron.schedule('*/10 * * * *', async () => {
     await createAvailabilityDates();
     console.log('Tarea cron createAvailabilityDates completada con éxito');
   
@@ -16,7 +16,7 @@ cron.schedule('*/1 * * * *', async () => {
   timezone: "America/Sao_Paulo"
 });
 
-cron.schedule('*/2 * * * *', async() => {
+cron.schedule('*/20 * * * *', async() => {
    
     await disablePreviousDates();
     console.log('Tarea cron disablePreviousDates completada con éxito');
