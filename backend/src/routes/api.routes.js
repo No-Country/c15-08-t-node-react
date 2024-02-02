@@ -7,27 +7,20 @@ const {
 
 const router =  Router()
 
-cron.schedule('0 14 * * *', async () => {
-  console.log('Ejecutando tarea cron createAvailabilityDates');
-  try {
+cron.schedule('*/1 * * * *', async () => {
     await createAvailabilityDates();
     console.log('Tarea cron createAvailabilityDates completada con éxito');
-  } catch (error) {
-    console.error('Error en la tarea cron createAvailabilityDates:', error);
-  }
+  
 }, {
   scheduled: true,
   timezone: "America/Sao_Paulo"
 });
 
-cron.schedule('1 0 * * *', async () => {
-  console.log('Ejecutando tarea cron disablePreviousDates');
-  try {
+cron.schedule('*/2 * * * *', async() => {
+   
     await disablePreviousDates();
     console.log('Tarea cron disablePreviousDates completada con éxito');
-  } catch (error) {
-    console.error('Error en la tarea cron disablePreviousDates:', error);
-  }
+  
 }, {
   scheduled: true,
   timezone: "America/Sao_Paulo"
