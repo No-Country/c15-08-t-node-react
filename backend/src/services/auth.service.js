@@ -153,6 +153,7 @@ const newPassword = async (body) => {
 }
 
 const updateUserService = async (email, updateUserData) => {
+
     try {
         const user = await User.findOne({ where: { email } });
         if (!user) {
