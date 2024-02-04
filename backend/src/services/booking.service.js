@@ -44,32 +44,32 @@ const createReservation = async (data) => {
     }
     
 
-    const fechaStr = date;
-    const [dia, mes, año] = fechaStr.split('/');
-    const reminderDay = await new Date(año, mes - 1, dia)
-    await reminderDay.setDate(reminderDay.getDate() - 1);
+    // const fechaStr = date;
+    // const [dia, mes, año] = fechaStr.split('/');
+    // const reminderDay = await new Date(año, mes - 1, dia)
+    // await reminderDay.setDate(reminderDay.getDate() - 1);
         
-    const newDay = await reminderDay.getDate();
-    const newMonth = await reminderDay.getMonth() + 1;
-    const newYear = await reminderDay.getFullYear(); 
-    const [hour, minutes] = result.schedule.split(':')
+    // const newDay = await reminderDay.getDate();
+    // const newMonth = await reminderDay.getMonth() + 1;
+    // const newYear = await reminderDay.getFullYear(); 
+    // const [hour, minutes] = result.schedule.split(':')
     
-    // console.log(
-    // 'email:', email,
-    // 'message:', message,
-    // 'minutes:', minutes,
-    // 'hour:', hour,
-    // 'newDay:', newDay,
-    // 'newMonth:', newMonth,
-    // 'newYear:', newYear
-    //  );
+    // // console.log(
+    // // 'email:', email,
+    // // 'message:', message,
+    // // 'minutes:', minutes,
+    // // 'hour:', hour,
+    // // 'newDay:', newDay,
+    // // 'newMonth:', newMonth,
+    // // 'newYear:', newYear
+    // //  );
     
-    // console.log(email, message, minutes, hour, newDay, newMonth, newYear)
-    await sendBookingCRecoverNotification({ email, message, minutes, hour, newDay, newMonth, newYear })   
+    // // console.log(email, message, minutes, hour, newDay, newMonth, newYear)
+    // await sendBookingCRecoverNotification({ email, message, minutes, hour, newDay, newMonth, newYear })   
 
     await sendBookingNotification({ email, message })
-    // return result.id.slice(-7)  
-    return message
+    return result.id.slice(-7)  
+    
     
 }
 
